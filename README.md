@@ -24,9 +24,11 @@ Class Tree: with 2 branches (arrays)
   - Create Tree
   - Shift Branches
   - Push Branches
+
 Class LumberJack:
   - Life
-  - Nº Cutted Branches 
+  - Nº Cutted Branches
+ 
 Class Game:
   - Cut Branch
   - Check if is in the Correct Side to keep alive
