@@ -35,6 +35,7 @@ Task definition in order of priority
 
 
 ### Trello
+[LumberJack Trello](https://trello.com/b/mCl4uUpx)
 [Link url](https://trello.com)
 
 
@@ -45,6 +46,4 @@ URls for the project repo and deploy
 
 
 ### Slides
-URls for the project presentation (slides)
-[Link Slides.com](http://slides.com)
-LumberJack Presentation: (https://slides.com/xavigallardo/lumberjack)
+[LumberJack Presentation:](https://slides.com/xavigallardo/lumberjack)
