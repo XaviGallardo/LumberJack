@@ -19,6 +19,7 @@ MVP definition, deliverables.
 
 ## Data structure
 Classes and methods definition.
+
 Class Tree: with 2 branches (arrays)
   - Create Tree
   - Shift Branches
