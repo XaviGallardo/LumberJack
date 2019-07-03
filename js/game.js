@@ -8,12 +8,21 @@ class Game {
     this.buttonLeft = document.createElement("button");
     this.buttonRight = document.createElement("button");
     this.theTree = options.theTree;
+
+    // this.interval = setInterval(updateGameArea, 20);
+
     //   this.maxCells = options.maxCells;
     //   this.food = undefined;
     //   this.ctx = options.ctx;
     //   this.snake = options.snake;
     //   this.gameOver = undefined;
   }
+  _clear() {
+    // this.canvas.context = this.canvas.getContext("2d");
+    this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  _update() {}
 
   _createBoard() {
     this.canvas.width = this.rows;
@@ -23,12 +32,52 @@ class Game {
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this._createControls();
   }
+  _attack(event) {
+    // event.target;
+    console.log("TCL: Game -> _attack -> event.target", event.target);
+    console.log("TCL: Game -> _attack -> this.buttonLeft", this.buttonLeft);
+    console.log("TCL: Game -> _attack -> this.buttonRight", this.buttonRight);
+    if (
+      this.lumberjack.position === "right" &&
+      event.target.innerText === "LEFT"
+    ) {
+      console.log("De derecha a izquierda");
+      this.lumberjack._changeSide();
+    } else if (
+      this.lumberjack.position === "left" &&
+      event.target.innerText === "RIGHT"
+    ) {
+      console.log("De izquierda a derecha");
+      this.lumberjack._changeSide();
+    }
+    this.lumberjack.position;
+    console.log(
+      "TCL: Game -> _attack -> this.lumberjack.position",
+      this.lumberjack.position
+    );
+    console.log(
+      "TCL: Game -> _attack -> this.buttonLeft.value",
+      this.buttonLeft.value
+    );
+    console.log(
+      "TCL: Game -> _attack -> this.lumberjack.position",
+      this.lumberjack.position
+    );
+    this._attackTree();
+    game._clear();
+    game._drawTree();
+    game._drawLumberJack();
+    game._drawBranches();
+  }
   _createControls() {
     this.buttonLeft.innerHTML = "LEFT";
-    this.buttonLeft.onclick = function() {
-      this.lumberjack._changeSide();
-    }.bind(this);
+    this.buttonLeft.onclick = this._attack.bind(this);
+    // this.buttonLeft.onclick = function() {
+    //   this.lumberjack._changeSide();
+    // }.bind(this);
+
     this.buttonRight.innerHTML = "RIGHT";
+    this.buttonRight.onclick = this._attack.bind(this);
     document.body.insertBefore(this.controls, document.body.childNodes[1]);
     document.getElementsByTagName("div")[0].appendChild(this.buttonLeft);
     document.getElementsByTagName("div")[0].appendChild(this.buttonRight);
@@ -96,6 +145,11 @@ class Game {
       );
     }
   }
+  _attackTree() {
+    this.theTree.branchRight.shift();
+    this.theTree.branchLeft.shift();
+  }
+
   //   _drawBoard() {
   //     this.ctx.fillStyle = "brown";
   //     this.ctx.fillRect(

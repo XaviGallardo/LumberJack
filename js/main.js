@@ -23,6 +23,15 @@ document.onload = (function() {
   game._drawTree();
   game._drawLumberJack();
   game._drawBranches();
+
+  // TESTING
+  //   for (let index = 1; index < 5; index++) {
+  //     game._clear();
+  //     game._attackTree();
+  //     game._drawLumberJack();
+  //     game._drawBranches();
+  //   }
+
   //   game.start();
 
   game.gameOver = function() {
