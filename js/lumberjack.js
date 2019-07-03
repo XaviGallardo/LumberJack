@@ -5,10 +5,16 @@ class LumberJack {
     this.position = "right";
   }
   _changeSide() {
+    console.log("CambioLado");
     if (this.position === "right") {
+      console.log("TCL: LumberJack -> _changeSide -> this", this);
       this.position = "left";
     } else {
       this.position = "right";
     }
+    console.log("TCL: LumberJack -> _changeSide -> this", this);
+  }
+  _cutTheTree() {
+    console.log("Cut the Tree");
   }
 }
