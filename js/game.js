@@ -10,6 +10,7 @@ class Game {
     this.theTree = options.theTree;
     this.Hposition = this.columns - 70;
     this.gameOver = false;
+    this.score = { points: 0, text: "Points:" };
     // this.interval = setInterval(updateGameArea, 20);
 
     //   this.maxCells = options.maxCells;
@@ -32,6 +33,7 @@ class Game {
     this.canvas.context = this.canvas.getContext("2d");
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this._createControls();
+    game._drawScore();
   }
   _attack(event) {
     // event.target;
@@ -64,6 +66,7 @@ class Game {
     //   "TCL: Game -> _attack -> this.lumberjack.position",
     //   this.lumberjack.position
     // );
+
     this._attackTree();
     game._clear();
     game._drawTree();
@@ -71,8 +74,13 @@ class Game {
     game._drawBranches();
     if (this._BranchHitHead() === true) {
       window.alert("Golpe en la cabeza");
+    } else {
+      this.score.points++;
     }
+    console.log("TCL: Game -> _attack -> this.score.points", this.score.points);
+    game._drawScore();
   }
+
   _createControls() {
     this.buttonLeft.innerHTML = "LEFT";
     this.buttonLeft.onclick = this._attack.bind(this);
@@ -198,6 +206,11 @@ class Game {
   _BranchHitHead() {
     console.log("TCL: Game -> _BranchHitHead -> this.gameOver", this.gameOver);
     return this.gameOver;
+  }
+  _drawScore() {
+    this.canvas.context.fillStyle = "black";
+    this.canvas.context.font = "15px Arial";
+    this.canvas.context.fillText(this.score.text + this.score.points, 15, 15);
   }
 
   //   _drawBoard() {
