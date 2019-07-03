@@ -8,7 +8,8 @@ class Game {
     this.buttonLeft = document.createElement("button");
     this.buttonRight = document.createElement("button");
     this.theTree = options.theTree;
-
+    this.Hposition = this.columns - 70;
+    this.gameOver = false;
     // this.interval = setInterval(updateGameArea, 20);
 
     //   this.maxCells = options.maxCells;
@@ -68,6 +69,9 @@ class Game {
     game._drawTree();
     game._drawLumberJack();
     game._drawBranches();
+    if (this._BranchHitHead() === true) {
+      window.alert("Golpe en la cabeza");
+    }
   }
   _createControls() {
     this.buttonLeft.innerHTML = "LEFT";
@@ -99,16 +103,39 @@ class Game {
     this.canvas.context.fillRect(125, Hposition, 100, 40);
   }
   _drawBranches() {
-    let Hposition = this.columns - 70; // 45 es altura de la rama
+    let Hposition = this.columns - 70; // 40 es altura de la rama
     // let Lposition = this.columns - 40;
     console.log(
       "TCL: Game -> _drawBranches -> this.theTree  Dibujando las Ramas",
       this.theTree
     );
+
     for (let i = 0; i < this.theTree.branchRight.length; i++) {
       if (this.theTree.branchRight[i] === "Branch") {
         this._drawBranchR(Hposition);
         console.log(`Derecha ${i} ${Hposition}`);
+
+        if (this.lumberjack.position === "right") {
+          if (Hposition + 40 >= this.columns - this.lumberjack.height) {
+            this.gameOver = true;
+            console.log(
+              "TCL: Game -> _drawBranches -> Hposition + 40",
+              Hposition + 40
+            );
+            console.log(
+              "TCL: Game -> _drawBranches -> this.columns - this.lumberjack.height",
+              this.columns - this.lumberjack.height
+            );
+            console.log(
+              "TCL: Game -> _drawBranches -> this.lumberjack.position",
+              this.lumberjack.position
+            );
+            console.log(
+              "TCL: Game -> _drawBranches -> this.gameOver",
+              this.gameOver
+            );
+          }
+        }
         // Rposition -= 5; // Separación entre ramas
         // Hposition -= 40;
       } else {
@@ -117,6 +144,12 @@ class Game {
       if (this.theTree.branchLeft[i] === "Branch") {
         this._drawBranchL(Hposition);
         console.log(`Izquierda ${i} ${Hposition}`);
+
+        if (this.lumberjack.position === "left") {
+          if (Hposition + 40 >= this.columns - this.lumberjack.height) {
+            this.gameOver = true;
+          }
+        }
         // Lposition -= 5; // Separación entre ramas
         // Hposition -= 40;
       } else {
@@ -161,6 +194,10 @@ class Game {
       this.theTree.branchLeft.push("Branch");
       this.theTree.branchLeft.push("NoBranch");
     }
+  }
+  _BranchHitHead() {
+    console.log("TCL: Game -> _BranchHitHead -> this.gameOver", this.gameOver);
+    return this.gameOver;
   }
 
   //   _drawBoard() {
