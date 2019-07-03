@@ -34,35 +34,35 @@ class Game {
   }
   _attack(event) {
     // event.target;
-    console.log("TCL: Game -> _attack -> event.target", event.target);
-    console.log("TCL: Game -> _attack -> this.buttonLeft", this.buttonLeft);
-    console.log("TCL: Game -> _attack -> this.buttonRight", this.buttonRight);
+    // console.log("TCL: Game -> _attack -> event.target", event.target);
+    // console.log("TCL: Game -> _attack -> this.buttonLeft", this.buttonLeft);
+    // console.log("TCL: Game -> _attack -> this.buttonRight", this.buttonRight);
     if (
       this.lumberjack.position === "right" &&
       event.target.innerText === "LEFT"
     ) {
-      console.log("De derecha a izquierda");
+      //   console.log("De derecha a izquierda");
       this.lumberjack._changeSide();
     } else if (
       this.lumberjack.position === "left" &&
       event.target.innerText === "RIGHT"
     ) {
-      console.log("De izquierda a derecha");
+      //   console.log("De izquierda a derecha");
       this.lumberjack._changeSide();
     }
-    this.lumberjack.position;
-    console.log(
-      "TCL: Game -> _attack -> this.lumberjack.position",
-      this.lumberjack.position
-    );
-    console.log(
-      "TCL: Game -> _attack -> this.buttonLeft.value",
-      this.buttonLeft.value
-    );
-    console.log(
-      "TCL: Game -> _attack -> this.lumberjack.position",
-      this.lumberjack.position
-    );
+    // this.lumberjack.position;
+    // console.log(
+    //   "TCL: Game -> _attack -> this.lumberjack.position",
+    //   this.lumberjack.position
+    // );
+    // console.log(
+    //   "TCL: Game -> _attack -> this.buttonLeft.value",
+    //   this.buttonLeft.value
+    // );
+    // console.log(
+    //   "TCL: Game -> _attack -> this.lumberjack.position",
+    //   this.lumberjack.position
+    // );
     this._attackTree();
     game._clear();
     game._drawTree();
@@ -99,7 +99,7 @@ class Game {
     this.canvas.context.fillRect(125, Hposition, 100, 40);
   }
   _drawBranches() {
-    let Hposition = this.columns - 40; // 45 es altura de la rama
+    let Hposition = this.columns - 70; // 45 es altura de la rama
     // let Lposition = this.columns - 40;
     console.log(
       "TCL: Game -> _drawBranches -> this.theTree  Dibujando las Ramas",
@@ -146,8 +146,21 @@ class Game {
     }
   }
   _attackTree() {
+    let random = 0;
     this.theTree.branchRight.shift();
     this.theTree.branchLeft.shift();
+    random = Math.floor(Math.random() * (2 - 0)) + 0;
+    if (random === 1) {
+      this.theTree.branchRight.push("Branch");
+      this.theTree.branchRight.push("NoBranch");
+      this.theTree.branchLeft.push("NoBranch");
+      this.theTree.branchLeft.push("NoBranch");
+    } else {
+      this.theTree.branchRight.push("NoBranch");
+      this.theTree.branchRight.push("NoBranch");
+      this.theTree.branchLeft.push("Branch");
+      this.theTree.branchLeft.push("NoBranch");
+    }
   }
 
   //   _drawBoard() {
