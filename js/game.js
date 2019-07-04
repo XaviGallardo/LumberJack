@@ -24,6 +24,14 @@ class Game {
     this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
+  start() {
+    game._createBoard();
+    game._drawTree();
+    game._drawLumberJack();
+    game._drawBranches();
+    game._assignControlsToKeys();
+  }
+
   _update() {}
 
   _createBoard() {
@@ -35,20 +43,24 @@ class Game {
     this._createControls();
     game._drawScore();
   }
+
   _attack(event) {
+    console.log("TCL: Game -> _attack -> event", event);
     // event.target;
     // console.log("TCL: Game -> _attack -> event.target", event.target);
     // console.log("TCL: Game -> _attack -> this.buttonLeft", this.buttonLeft);
     // console.log("TCL: Game -> _attack -> this.buttonRight", this.buttonRight);
     if (
-      this.lumberjack.position === "right" &&
-      event.target.innerText === "LEFT"
+      (this.lumberjack.position === "right" &&
+        event.target.innerText === "LEFT") ||
+      (this.lumberjack.position === "right" && event.keyCode === 37)
     ) {
       //   console.log("De derecha a izquierda");
       this.lumberjack._changeSide();
     } else if (
-      this.lumberjack.position === "left" &&
-      event.target.innerText === "RIGHT"
+      (this.lumberjack.position === "left" &&
+        event.target.innerText === "RIGHT") ||
+      (this.lumberjack.position === "left" && event.keyCode === 39)
     ) {
       //   console.log("De izquierda a derecha");
       this.lumberjack._changeSide();
@@ -79,6 +91,22 @@ class Game {
     }
     console.log("TCL: Game -> _attack -> this.score.points", this.score.points);
     game._drawScore();
+  }
+
+  _assignControlsToKeys() {
+    document.onkeydown = e => {
+      switch (e.keyCode) {
+        case 37: // arror left
+          this._attack(e);
+          break;
+        case 39: // arrow right
+          this._attack(e);
+          break;
+        case 80: // p pause
+          // this.snake.intervalId ? this.snake.stop() : this.snake.move();
+          break;
+      }
+    };
   }
 
   _createControls() {
