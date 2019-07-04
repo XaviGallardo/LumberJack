@@ -23,8 +23,12 @@ class Game {
     // this.canvas.context = this.canvas.getContext("2d");
     this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
-
+  _clearPage() {
+    let controls = document.getElementsByTagName("div")[0];
+    controls.parentNode.removeChild(controls);
+  }
   start() {
+    game._clearPage();
     game._createBoard();
     game._drawTree();
     game._drawLumberJack();

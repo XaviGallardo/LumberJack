@@ -1,6 +1,7 @@
 var game;
 var lumberjack;
 var theTree;
+var controlPanel;
 document.onload = (function() {
   //   const canvas = document.getElementById("snake");
   //   const ctx = canvas.getContext("2d");
@@ -17,7 +18,10 @@ document.onload = (function() {
 
   //   lumberjack = new LumberJack(20, 60);
 
-  game.start();
+  controlPanel = new ControlPanel();
+  controlPanel.buttonPlayGame();
+
+  // game.start();
   // game._createBoard();
   // game._drawTree();
   // game._drawLumberJack();
