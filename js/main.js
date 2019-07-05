@@ -23,6 +23,7 @@ document.onload = (function() {
   };
 
   initialStatus()();
+
   controlPanel.buttonStartGame();
 
   // game.gameOver = function() {

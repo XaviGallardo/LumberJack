@@ -10,10 +10,11 @@ class Game {
     this.theTree = options.theTree;
     this.Hposition = this.columns - 70;
     this.gameOverStatus = false;
-    this.score = { points: 0, text: "Points:" };
+    this.score = { points: 0, text: "Points:", level: 1, counter: 0 };
     this.controlPanel = options.controlpanel;
     this.starting = options.starting;
     this.gameInterval = undefined;
+
     // this.interval = setInterval(updateGameArea, 20);
 
     //   this.maxCells = options.maxCells;
@@ -131,7 +132,7 @@ class Game {
       this._stop();
       this.controlPanel.gameOverPanel(this.score);
     } else {
-      this.lumberjack.life--;
+      this.lumberjack.life = this.lumberjack.life - (1 + this.score.level / 10);
       console.log(
         "TCL: Game -> _gameOver -> this.lumberjack.life",
         this.lumberjack.life
@@ -284,6 +285,11 @@ class Game {
     }
     if (!this.gameOverStatus) {
       this.score.points++;
+      this.score.counter++;
+      if (this.score.counter === 10) {
+        this.score.level++;
+        this.score.counter = 0;
+      }
       if (this.lumberjack.life < this.lumberjack.maxLife) {
         this.lumberjack.life += 10;
       }
