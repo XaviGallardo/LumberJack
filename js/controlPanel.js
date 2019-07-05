@@ -13,10 +13,14 @@ class ControlPanel {
     document.getElementsByTagName("div")[0].appendChild(this.playGame);
   }
 
-  gameOverPanel() {
-    this.gameOver.innerHTML = "VER COMO METER la PUNTUACION";
-    document.getElementsByTagName("div")[0].appendChild(this.gameOver);
+  gameOverPanel(score) {
+    console.log("TCL: ControlPanel -> gameOverPanel -> score", score);
+    this.gameOver.innerHTML = `TOTAL  ${score.text} ${score.points}`;
+    document
+      .getElementsByTagName("div")[0]
+      .parentNode.appendChild(this.gameOver);
     let element = document.getElementsByTagName("div")[0];
     document.getElementsByTagName("div")[0].parentNode.removeChild(element);
+    console.log("TCL: ControlPanel -> gameOverPanel -> element", element);
   }
 }

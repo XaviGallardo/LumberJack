@@ -100,19 +100,14 @@ class Game {
 
   _gameOver() {
     if (this._BranchHitHead() === true) {
-      window.alert("Golpe en la cabeza");
-      this.controlPanel.gameOverPanel();
+      // window.alert("Golpe en la cabeza");
+      this.controlPanel.gameOverPanel(this.score);
     } else {
       this.score.points++;
     }
   }
 
   _assignControlsToKeys() {
-    console.log(
-      "TCL: Game -> _assignControlsToKeys -> game.gameOverStatus",
-      game.gameOverStatus
-    );
-
     document.onkeydown = e => {
       switch (e.keyCode) {
         case 37: // arror left
