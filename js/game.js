@@ -9,8 +9,9 @@ class Game {
     this.buttonRight = document.createElement("button");
     this.theTree = options.theTree;
     this.Hposition = this.columns - 70;
-    this.gameOver = false;
+    this.gameOverStatus = false;
     this.score = { points: 0, text: "Points:" };
+    this.controlPanel = options.controlpanel;
     // this.interval = setInterval(updateGameArea, 20);
 
     //   this.maxCells = options.maxCells;
@@ -24,8 +25,13 @@ class Game {
     this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
   _clearPage() {
-    let controls = document.getElementsByTagName("div")[0];
-    controls.parentNode.removeChild(controls);
+    this.controlPanel.startPage.parentNode.removeChild(
+      this.controlPanel.startPage
+    );
+    console.log(
+      "TCL: Game -> _clearPage -> this.controlPanel",
+      this.controlPanel
+    );
   }
   start() {
     game._clearPage();
@@ -88,24 +94,37 @@ class Game {
     game._drawTree();
     game._drawLumberJack();
     game._drawBranches();
-    if (this._BranchHitHead() === true) {
-      window.alert("Golpe en la cabeza");
-    } else {
-      this.score.points++;
-    }
-    console.log("TCL: Game -> _attack -> this.score.points", this.score.points);
+    game._gameOver();
     game._drawScore();
   }
 
+  _gameOver() {
+    if (this._BranchHitHead() === true) {
+      window.alert("Golpe en la cabeza");
+      this.controlPanel.gameOverPanel();
+    } else {
+      this.score.points++;
+    }
+  }
+
   _assignControlsToKeys() {
+    console.log(
+      "TCL: Game -> _assignControlsToKeys -> game.gameOverStatus",
+      game.gameOverStatus
+    );
+
     document.onkeydown = e => {
       switch (e.keyCode) {
         case 37: // arror left
-          this._attack(e);
-          break;
+          if (!game.gameOverStatus) {
+            this._attack(e);
+            break;
+          }
         case 39: // arrow right
-          this._attack(e);
-          break;
+          if (!game.gameOverStatus) {
+            this._attack(e);
+            break;
+          }
         case 80: // p pause
           // this.snake.intervalId ? this.snake.stop() : this.snake.move();
           break;
@@ -157,7 +176,7 @@ class Game {
 
         if (this.lumberjack.position === "right") {
           if (Hposition + 40 >= this.columns - this.lumberjack.height) {
-            this.gameOver = true;
+            this.gameOverStatus = true;
             console.log(
               "TCL: Game -> _drawBranches -> Hposition + 40",
               Hposition + 40
@@ -171,8 +190,8 @@ class Game {
               this.lumberjack.position
             );
             console.log(
-              "TCL: Game -> _drawBranches -> this.gameOver",
-              this.gameOver
+              "TCL: Game -> _drawBranches -> this.gameOverStatus",
+              this.gameOverStatus
             );
           }
         }
@@ -187,7 +206,7 @@ class Game {
 
         if (this.lumberjack.position === "left") {
           if (Hposition + 40 >= this.columns - this.lumberjack.height) {
-            this.gameOver = true;
+            this.gameOverStatus = true;
           }
         }
         // Lposition -= 5; // Separación entre ramas
@@ -236,8 +255,11 @@ class Game {
     }
   }
   _BranchHitHead() {
-    console.log("TCL: Game -> _BranchHitHead -> this.gameOver", this.gameOver);
-    return this.gameOver;
+    console.log(
+      "TCL: Game -> _BranchHitHead -> this.gameOverStatus",
+      this.gameOverStatus
+    );
+    return this.gameOverStatus;
   }
   _drawScore() {
     this.canvas.context.fillStyle = "black";

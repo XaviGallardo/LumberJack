@@ -8,18 +8,19 @@ document.onload = (function() {
   //   const widthCell = 10;
 
   lumberjack = new LumberJack(50, 80);
+  controlPanel = new ControlPanel();
 
   game = new Game({
     rows: 500,
     columns: 700,
     lumberjack: lumberjack,
-    theTree: new TheTree(lumberjack)
+    theTree: new TheTree(lumberjack),
+    controlpanel: controlPanel
   });
 
   //   lumberjack = new LumberJack(20, 60);
 
-  controlPanel = new ControlPanel();
-  controlPanel.buttonPlayGame();
+  controlPanel.buttonStartGame();
 
   // game.start();
   // game._createBoard();

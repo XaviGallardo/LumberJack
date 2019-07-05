@@ -40,4 +40,6 @@ class TheTree {
       this.branchLeft
     );
   }
+
+  // attackTree() // Pasar el metodo de ataque de GAME a
 }
