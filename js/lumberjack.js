@@ -3,6 +3,7 @@ class LumberJack {
     this.width = width;
     this.height = height;
     this.position = "right";
+    this.life = 300;
   }
   _changeSide() {
     console.log("CambioLado");

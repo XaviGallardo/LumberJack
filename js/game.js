@@ -13,6 +13,7 @@ class Game {
     this.score = { points: 0, text: "Points:" };
     this.controlPanel = options.controlpanel;
     this.starting = options.starting;
+    this.gameInterval = undefined;
     // this.interval = setInterval(updateGameArea, 20);
 
     //   this.maxCells = options.maxCells;
@@ -35,6 +36,12 @@ class Game {
     game._drawLumberJack();
     game._drawBranches();
     game._assignControlsToKeys();
+
+    game._updateGameArea();
+  }
+
+  _stop() {
+    window.cancelAnimationFrame(this.gameInterval);
   }
 
   reStart() {
@@ -43,8 +50,6 @@ class Game {
     document.getElementsByTagName("canvas")[0].parentNode.removeChild(element);
     game.start();
   }
-
-  _update() {}
 
   _createBoard() {
     this.canvas.width = this.rows;
@@ -62,6 +67,7 @@ class Game {
     // console.log("TCL: Game -> _attack -> event.target", event.target);
     // console.log("TCL: Game -> _attack -> this.buttonLeft", this.buttonLeft);
     // console.log("TCL: Game -> _attack -> this.buttonRight", this.buttonRight);
+
     if (
       (this.lumberjack.position === "right" &&
         event.target.innerText === "LEFT") ||
@@ -92,6 +98,18 @@ class Game {
     // );
 
     this._attackTree();
+    // game._clear();
+    // game._drawTree();
+    // game._drawLumberJack();
+    // game._drawBranches();
+    // game._gameOver();
+    // game._drawScore();
+  }
+  _updateGameArea() {
+    this.gameInterval = window.requestAnimationFrame(
+      this._updateGameArea.bind(this)
+    );
+    console.log("Hello");
     game._clear();
     game._drawTree();
     game._drawLumberJack();
@@ -101,11 +119,18 @@ class Game {
   }
 
   _gameOver() {
-    if (this._BranchHitHead() === true) {
+    if (this._BranchHitHead() === true || this.lumberjack.life === 0) {
       // window.alert("Golpe en la cabeza");
+      this._stop();
       this.controlPanel.gameOverPanel(this.score);
     } else {
-      this.score.points++;
+      this.lumberjack.life--;
+      console.log(
+        "TCL: Game -> _gameOver -> this.lumberjack.life",
+        this.lumberjack.life
+      );
+
+      // this.score.points++; // Aquí controlar la vida basada en el tiempo.
     }
   }
 
@@ -249,6 +274,9 @@ class Game {
       this.theTree.branchRight.push("NoBranch");
       this.theTree.branchLeft.push("Branch");
       this.theTree.branchLeft.push("NoBranch");
+    }
+    if (!this.gameOverStatus) {
+      this.score.points++;
     }
   }
   _BranchHitHead() {
