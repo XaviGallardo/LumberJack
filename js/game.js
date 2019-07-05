@@ -21,17 +21,11 @@ class Game {
     //   this.gameOver = undefined;
   }
   _clear() {
-    // this.canvas.context = this.canvas.getContext("2d");
     this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
   _clearPage() {
-    this.controlPanel.startPage.parentNode.removeChild(
-      this.controlPanel.startPage
-    );
-    console.log(
-      "TCL: Game -> _clearPage -> this.controlPanel",
-      this.controlPanel
-    );
+    let element = document.getElementsByTagName("div")[0];
+    document.getElementsByTagName("div")[0].parentNode.removeChild(element);
   }
   start() {
     game._clearPage();

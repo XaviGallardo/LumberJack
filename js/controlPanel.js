@@ -5,7 +5,11 @@ class ControlPanel {
     this.reStartGame = document.createElement("button");
     this.gameOver = document.createElement("div");
   }
-
+  _buttonReStart() {
+    this.reStartGame.innerHTML = "NEW GAME";
+    this.reStartGame.onclick = game.start;
+    document.getElementsByTagName("div")[0].appendChild(this.reStartGame);
+  }
   buttonStartGame() {
     this.playGame.innerHTML = "PLAY";
     this.playGame.onclick = game.start;
@@ -21,6 +25,7 @@ class ControlPanel {
       .parentNode.appendChild(this.gameOver);
     let element = document.getElementsByTagName("div")[0];
     document.getElementsByTagName("div")[0].parentNode.removeChild(element);
+    this._buttonReStart();
     console.log("TCL: ControlPanel -> gameOverPanel -> element", element);
   }
 }
