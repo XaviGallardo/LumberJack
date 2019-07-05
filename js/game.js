@@ -105,6 +105,12 @@ class Game {
     // game._gameOver();
     // game._drawScore();
   }
+
+  _drawLife() {
+    this.canvas.context.fillStyle = "white";
+    this.canvas.context.fillRect(15, 30, this.lumberjack.life / 3, 5); // ( x inicial , y inicial, aancho, alto)
+  }
+
   _updateGameArea() {
     this.gameInterval = window.requestAnimationFrame(
       this._updateGameArea.bind(this)
@@ -116,6 +122,7 @@ class Game {
     game._drawBranches();
     game._gameOver();
     game._drawScore();
+    game._drawLife();
   }
 
   _gameOver() {
@@ -277,6 +284,9 @@ class Game {
     }
     if (!this.gameOverStatus) {
       this.score.points++;
+      if (this.lumberjack.life < this.lumberjack.maxLife) {
+        this.lumberjack.life += 10;
+      }
     }
   }
   _BranchHitHead() {

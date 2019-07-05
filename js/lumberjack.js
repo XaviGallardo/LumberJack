@@ -3,6 +3,7 @@ class LumberJack {
     this.width = width;
     this.height = height;
     this.position = "right";
+    this.maxLife = 300;
     this.life = 300;
   }
   _changeSide() {
