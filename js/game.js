@@ -12,6 +12,7 @@ class Game {
     this.gameOverStatus = false;
     this.score = { points: 0, text: "Points:" };
     this.controlPanel = options.controlpanel;
+    this.starting = options.starting;
     // this.interval = setInterval(updateGameArea, 20);
 
     //   this.maxCells = options.maxCells;
@@ -34,6 +35,13 @@ class Game {
     game._drawLumberJack();
     game._drawBranches();
     game._assignControlsToKeys();
+  }
+
+  reStart() {
+    game.starting()();
+    let element = document.getElementsByTagName("canvas")[0];
+    document.getElementsByTagName("canvas")[0].parentNode.removeChild(element);
+    game.start();
   }
 
   _update() {}

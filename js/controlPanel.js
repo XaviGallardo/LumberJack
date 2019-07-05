@@ -7,7 +7,7 @@ class ControlPanel {
   }
   _buttonReStart() {
     this.reStartGame.innerHTML = "NEW GAME";
-    this.reStartGame.onclick = game.start;
+    this.reStartGame.onclick = game.reStart;
     document.getElementsByTagName("div")[0].appendChild(this.reStartGame);
   }
   buttonStartGame() {
