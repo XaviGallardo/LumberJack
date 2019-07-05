@@ -112,6 +112,8 @@ class Game {
     this.canvas.context.fillRect(15, 30, this.lumberjack.life / 3, 5); // ( x inicial , y inicial, aancho, alto)
   }
 
+  _drawLevel() {}
+
   _updateGameArea() {
     this.gameInterval = window.requestAnimationFrame(
       this._updateGameArea.bind(this)
@@ -127,12 +129,12 @@ class Game {
   }
 
   _gameOver() {
-    if (this._BranchHitHead() === true || this.lumberjack.life === 0) {
+    if (this._BranchHitHead() === true || this.lumberjack.life <= 0) {
       // window.alert("Golpe en la cabeza");
       this._stop();
       this.controlPanel.gameOverPanel(this.score);
     } else {
-      this.lumberjack.life = this.lumberjack.life - (1 + this.score.level / 10);
+      this.lumberjack.life = this.lumberjack.life - (1 + this.score.level / 20);
       console.log(
         "TCL: Game -> _gameOver -> this.lumberjack.life",
         this.lumberjack.life
@@ -177,20 +179,24 @@ class Game {
     // document.body.insertBefore(this.buttonLeft, document.body.childNodes[1]);
     // document.body.insertBefore(this.buttonRight, document.body.childNodes[2]);
   }
+
   _drawTree() {
     console.log(this);
     // Rect to make the Tree
     this.canvas.context.fillStyle = "brown";
     this.canvas.context.fillRect(225, 0, 50, 700); // ( x inicial , y inicial, aancho, alto)
   }
+
   _drawBranchR(Hposition) {
     this.canvas.context.fillStyle = "blue";
     this.canvas.context.fillRect(275, Hposition, 100, 40);
   }
+
   _drawBranchL(Hposition) {
     this.canvas.context.fillStyle = "red";
     this.canvas.context.fillRect(125, Hposition, 100, 40);
   }
+
   _drawBranches() {
     let Hposition = this.columns - 70; // 40 es altura de la rama
     // let Lposition = this.columns - 40;
@@ -267,6 +273,7 @@ class Game {
       );
     }
   }
+
   _attackTree() {
     let random = 0;
     this.theTree.branchRight.shift();
@@ -286,15 +293,16 @@ class Game {
     if (!this.gameOverStatus) {
       this.score.points++;
       this.score.counter++;
-      if (this.score.counter === 10) {
+      if (this.score.counter === 15) {
         this.score.level++;
         this.score.counter = 0;
       }
       if (this.lumberjack.life < this.lumberjack.maxLife) {
-        this.lumberjack.life += 10;
+        this.lumberjack.life += 15;
       }
     }
   }
+
   _BranchHitHead() {
     console.log(
       "TCL: Game -> _BranchHitHead -> this.gameOverStatus",
@@ -302,6 +310,7 @@ class Game {
     );
     return this.gameOverStatus;
   }
+
   _drawScore() {
     this.canvas.context.fillStyle = "black";
     this.canvas.context.font = "15px Arial";
