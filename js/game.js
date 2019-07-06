@@ -129,9 +129,6 @@ class Game {
     if (this.counterFrames < 60) {
       game._drawLevel();
     }
-    // si he cortado 10 llamo a game._drawLevel e inicio contador de showLevel
-    // si contador de showLevel llega a 20, llamar a otra que deje de llamar a drawLevel
-    // game._drawLevel();
   }
 
   _gameOver() {
