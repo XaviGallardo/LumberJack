@@ -14,6 +14,7 @@ class Game {
     this.controlPanel = options.controlpanel;
     this.starting = options.starting;
     this.gameInterval = undefined;
+    this.counterFrames = 0;
 
     // this.interval = setInterval(updateGameArea, 20);
 
@@ -63,7 +64,7 @@ class Game {
   }
 
   _attack(event) {
-    console.log("TCL: Game -> _attack -> event", event);
+    // console.log("TCL: Game -> _attack -> event", event);
     // event.target;
     // console.log("TCL: Game -> _attack -> event.target", event.target);
     // console.log("TCL: Game -> _attack -> this.buttonLeft", this.buttonLeft);
@@ -112,13 +113,12 @@ class Game {
     this.canvas.context.fillRect(15, 30, this.lumberjack.life / 3, 5); // ( x inicial , y inicial, aancho, alto)
   }
 
-  _drawLevel() {}
-
   _updateGameArea() {
     this.gameInterval = window.requestAnimationFrame(
       this._updateGameArea.bind(this)
     );
-    console.log("Hello");
+    this.counterFrames++;
+    console.log(this.counterFrames);
     game._clear();
     game._drawTree();
     game._drawLumberJack();
@@ -126,6 +126,12 @@ class Game {
     game._gameOver();
     game._drawScore();
     game._drawLife();
+    if (this.counterFrames < 60) {
+      game._drawLevel();
+    }
+    // si he cortado 10 llamo a game._drawLevel e inicio contador de showLevel
+    // si contador de showLevel llega a 20, llamar a otra que deje de llamar a drawLevel
+    // game._drawLevel();
   }
 
   _gameOver() {
@@ -135,10 +141,10 @@ class Game {
       this.controlPanel.gameOverPanel(this.score);
     } else {
       this.lumberjack.life = this.lumberjack.life - (1 + this.score.level / 20);
-      console.log(
-        "TCL: Game -> _gameOver -> this.lumberjack.life",
-        this.lumberjack.life
-      );
+      // console.log(
+      //   "TCL: Game -> _gameOver -> this.lumberjack.life",
+      //   this.lumberjack.life
+      // );
 
       // this.score.points++; // Aquí controlar la vida basada en el tiempo.
     }
@@ -181,7 +187,7 @@ class Game {
   }
 
   _drawTree() {
-    console.log(this);
+    // console.log(this);
     // Rect to make the Tree
     this.canvas.context.fillStyle = "brown";
     this.canvas.context.fillRect(225, 0, 50, 700); // ( x inicial , y inicial, aancho, alto)
@@ -200,35 +206,35 @@ class Game {
   _drawBranches() {
     let Hposition = this.columns - 70; // 40 es altura de la rama
     // let Lposition = this.columns - 40;
-    console.log(
-      "TCL: Game -> _drawBranches -> this.theTree  Dibujando las Ramas",
-      this.theTree
-    );
+    // console.log(
+    //   "TCL: Game -> _drawBranches -> this.theTree  Dibujando las Ramas",
+    //   this.theTree
+    // );
 
     for (let i = 0; i < this.theTree.branchRight.length; i++) {
       if (this.theTree.branchRight[i] === "Branch") {
         this._drawBranchR(Hposition);
-        console.log(`Derecha ${i} ${Hposition}`);
+        // console.log(`Derecha ${i} ${Hposition}`);
 
         if (this.lumberjack.position === "right") {
           if (Hposition + 40 >= this.columns - this.lumberjack.height) {
             this.gameOverStatus = true;
-            console.log(
-              "TCL: Game -> _drawBranches -> Hposition + 40",
-              Hposition + 40
-            );
-            console.log(
-              "TCL: Game -> _drawBranches -> this.columns - this.lumberjack.height",
-              this.columns - this.lumberjack.height
-            );
-            console.log(
-              "TCL: Game -> _drawBranches -> this.lumberjack.position",
-              this.lumberjack.position
-            );
-            console.log(
-              "TCL: Game -> _drawBranches -> this.gameOverStatus",
-              this.gameOverStatus
-            );
+            // console.log(
+            //   "TCL: Game -> _drawBranches -> Hposition + 40",
+            //   Hposition + 40
+            // );
+            // console.log(
+            //   "TCL: Game -> _drawBranches -> this.columns - this.lumberjack.height",
+            //   this.columns - this.lumberjack.height
+            // );
+            // console.log(
+            //   "TCL: Game -> _drawBranches -> this.lumberjack.position",
+            //   this.lumberjack.position
+            // );
+            // console.log(
+            //   "TCL: Game -> _drawBranches -> this.gameOverStatus",
+            //   this.gameOverStatus
+            // );
           }
         }
         // Rposition -= 5; // Separación entre ramas
@@ -238,7 +244,7 @@ class Game {
       }
       if (this.theTree.branchLeft[i] === "Branch") {
         this._drawBranchL(Hposition);
-        console.log(`Izquierda ${i} ${Hposition}`);
+        // console.log(`Izquierda ${i} ${Hposition}`);
 
         if (this.lumberjack.position === "left") {
           if (Hposition + 40 >= this.columns - this.lumberjack.height) {
@@ -255,7 +261,7 @@ class Game {
   }
 
   _drawLumberJack() {
-    console.log(this);
+    // console.log(this);
     this.canvas.context.fillStyle = "yellow";
     if (this.lumberjack.position === "right") {
       this.canvas.context.fillRect(
@@ -295,6 +301,8 @@ class Game {
       this.score.counter++;
       if (this.score.counter === 15) {
         this.score.level++;
+        this.counterFrames = 0;
+        // game._drawLevel();
         this.score.counter = 0;
       }
       if (this.lumberjack.life < this.lumberjack.maxLife) {
@@ -304,10 +312,10 @@ class Game {
   }
 
   _BranchHitHead() {
-    console.log(
-      "TCL: Game -> _BranchHitHead -> this.gameOverStatus",
-      this.gameOverStatus
-    );
+    // console.log(
+    //   "TCL: Game -> _BranchHitHead -> this.gameOverStatus",
+    //   this.gameOverStatus
+    // );
     return this.gameOverStatus;
   }
 
@@ -315,6 +323,16 @@ class Game {
     this.canvas.context.fillStyle = "black";
     this.canvas.context.font = "15px Arial";
     this.canvas.context.fillText(this.score.text + this.score.points, 15, 15);
+  }
+
+  _drawLevel() {
+    // let procesoID;
+    // procesoID = setInterval(this._drawLevel, 10);
+    console.log("he llamado DRAW LEVEL");
+    this.canvas.context.fillStyle = "black";
+    this.canvas.context.font = "15px Arial";
+    this.canvas.context.fillText("LEVEL:  " + this.score.level, 15, 75);
+    console.log("Deberia haber DRAW LEVEL");
   }
 
   //   _drawBoard() {
