@@ -3,8 +3,11 @@ class LumberJack {
     this.width = width;
     this.height = height;
     this.position = "right";
-    this.maxLife = 300;
-    this.life = 300;
+    this.maxLife = 30000; // 300 ha de ser , se amplia para poder ajustar
+    this.life = 30000; // 300 ha de ser , se amplia para poder ajustar
+
+    this.LumberJackImage = new Image();
+    this.LumberJackImage.src = "/public/lumberjack_No.png";
   }
   _changeSide() {
     console.log("CambioLado");

@@ -8,7 +8,7 @@ class Game {
     this.buttonLeft = document.createElement("button");
     this.buttonRight = document.createElement("button");
     this.theTree = options.theTree;
-    this.Hposition = this.columns - 70;
+    this.Hposition = this.columns - 70; // 70
     this.gameOverStatus = false;
     this.score = { points: 0, text: "Points:", level: 1, counter: 0 };
     this.controlPanel = options.controlpanel;
@@ -118,7 +118,7 @@ class Game {
       this._updateGameArea.bind(this)
     );
     this.counterFrames++;
-    console.log(this.counterFrames);
+    // console.log(this.counterFrames);
     game._clear();
     game._drawTree();
     game._drawLumberJack();
@@ -201,7 +201,7 @@ class Game {
   }
 
   _drawBranches() {
-    let Hposition = this.columns - 70; // 40 es altura de la rama
+    let Hposition = this.columns - 150; // Este valor ajusta la altura donde empezar a dibujar las ramas Valor correcto 70 para altura de 80 si altura 160, valor 150<- 40 es altura de la rama
     // let Lposition = this.columns - 40;
     // console.log(
     //   "TCL: Game -> _drawBranches -> this.theTree  Dibujando las Ramas",
@@ -261,18 +261,30 @@ class Game {
     // console.log(this);
     this.canvas.context.fillStyle = "yellow";
     if (this.lumberjack.position === "right") {
-      this.canvas.context.fillRect(
+      // this.canvas.context.fillRect(
+      //   290,
+      //   this.canvas.height - this.lumberjack.height,
+      //   this.lumberjack.width,
+      //   this.lumberjack.height
+      // );
+      // DRAW LUMBERJACK
+      this.canvas.context.drawImage(
+        this.lumberjack.LumberJackImage,
         290,
-        this.canvas.height - this.lumberjack.height,
-        this.lumberjack.width,
-        this.lumberjack.height
+        this.canvas.height - this.lumberjack.height
       );
     } else {
-      this.canvas.context.fillRect(
+      // this.canvas.context.fillRect(
+      //   225 - 15 - this.lumberjack.width,
+      //   this.canvas.height - this.lumberjack.height,
+      //   this.lumberjack.width,
+      //   this.lumberjack.height
+      // );
+      // DRAW LUMBERJACK
+      this.canvas.context.drawImage(
+        this.lumberjack.LumberJackImage,
         225 - 15 - this.lumberjack.width,
-        this.canvas.height - this.lumberjack.height,
-        this.lumberjack.width,
-        this.lumberjack.height
+        this.canvas.height - this.lumberjack.height
       );
     }
   }
@@ -280,7 +292,22 @@ class Game {
   _attackTree() {
     let random = 0;
     this.theTree.branchRight.shift();
+    console.log(
+      "TCL: Game -> _attackTree -> this.theTree.branchRight",
+      this.theTree.branchRight
+    );
     this.theTree.branchLeft.shift();
+    console.log(
+      "TCL: Game -> _attackTree -> this.theTree.branchLeft",
+      this.theTree.branchLeft
+    );
+
+    if (this.lumberjack.position === "right") {
+      this.theTree.branchLeft[0] = "NoBranch";
+    } else {
+      this.theTree.branchRight[0] = "NoBranch";
+    }
+
     random = Math.floor(Math.random() * (2 - 0)) + 0;
     if (random === 1) {
       this.theTree.branchRight.push("Branch");

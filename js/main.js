@@ -8,7 +8,7 @@ document.onload = (function() {
   initialStatus = function() {
     return function() {
       console.log("iniciando ...");
-      lumberjack = new LumberJack(50, 80);
+      lumberjack = new LumberJack(100, 160);
       controlPanel = new ControlPanel();
 
       game = new Game({
