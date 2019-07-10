@@ -171,7 +171,19 @@ class Game {
 
   _assignControlsToKeys() {
     document.onkeydown = e => {
+      // console.log("TCL: Game -> _assignControlsToKeys -> e.keyCode", e.keyCode);
       switch (e.keyCode) {
+        case 32: // spacebar
+          console.log(
+            "TCL: Game -> _assignControlsToKeys -> game.gameOverStatus",
+            game.gameOverStatus
+          );
+          if (game.gameOverStatus) {
+            game.reStart();
+            break;
+          } else {
+            break;
+          }
         case 37: // arror left
           if (!game.gameOverStatus) {
             this._attack(e);
