@@ -3,11 +3,23 @@ class LumberJack {
     this.width = width;
     this.height = height;
     this.position = "right";
-    this.maxLife = 30000; // 300 ha de ser , se amplia para poder ajustar
-    this.life = 30000; // 300 ha de ser , se amplia para poder ajustar
+    this.maxLife = 300; // 300 ha de ser , se amplia para poder ajustar
+    this.life = 300; // 300 ha de ser , se amplia para poder ajustar
 
-    this.LumberJackImage = new Image();
-    this.LumberJackImage.src = "/public/lumberjack_No.png";
+    this.attacking = false;
+
+    this.LumberJackImageDGOver = new Image();
+    this.LumberJackImageDGOver.src = "/public/lumberAccidentD.png";
+    this.LumberJackImageIGOver = new Image();
+    this.LumberJackImageIGOver.src = "/public/lumberAccidenteIzq.png";
+    this.LumberJackImageD = new Image();
+    this.LumberJackImageD.src = "/public/lumberjack_No.png";
+    this.LumberJackImageI = new Image();
+    this.LumberJackImageI.src = "/public/lumberIzquierda.png";
+    this.LumberJackImageDA = new Image();
+    this.LumberJackImageDA.src = "/public/lumberDerechaAtack.png";
+    this.LumberJackImageIA = new Image();
+    this.LumberJackImageIA.src = "/public/lumberIzqAtack.png";
   }
   _changeSide() {
     console.log("CambioLado");

@@ -4,6 +4,11 @@ class TheTree {
     this.branchLeft = [];
     this.lumberjack = lumberjack;
     this._createTree(lumberjack);
+
+    this.BranchD = new Image();
+    this.BranchD.src = "/public/RamaD.png";
+    this.BranchI = new Image();
+    this.BranchI.src = "/public/RamaI.png";
   }
   _createTree(position) {
     console.log(lumberjack);

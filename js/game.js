@@ -15,6 +15,7 @@ class Game {
     this.starting = options.starting;
     this.gameInterval = undefined;
     this.counterFrames = 0;
+    this.counterAttack = 0;
 
     // this.interval = setInterval(updateGameArea, 20);
 
@@ -99,6 +100,8 @@ class Game {
     //   this.lumberjack.position
     // );
 
+    this.lumberjack.attacking = true;
+
     this._attackTree();
     // game._clear();
     // game._drawTree();
@@ -118,6 +121,11 @@ class Game {
       this._updateGameArea.bind(this)
     );
     this.counterFrames++;
+    this.counterAttack++;
+    console.log(
+      "TCL: Game -> _updateGameArea -> this.counterAttack",
+      this.counterAttack
+    );
     // console.log(this.counterFrames);
     game._clear();
     game._drawTree();
@@ -129,12 +137,26 @@ class Game {
     if (this.counterFrames < 60) {
       game._drawLevel();
     }
+    if (this.counterAttack === 10) {
+      console.log(
+        "TCL: Game -> _updateGameArea -> this.counterAttack",
+        this.counterAttack
+      );
+      this.lumberjack.attacking = false;
+      this.counterAttack = 0;
+    }
   }
 
   _gameOver() {
     if (this._BranchHitHead() === true || this.lumberjack.life <= 0) {
       // window.alert("Golpe en la cabeza");
+      this.gameOverStatus = true;
       this._stop();
+      game._clearPage();
+      game._createBoard();
+      game._drawTree();
+      game._drawBranches();
+      game._drawLumberJack();
       this.controlPanel.gameOverPanel(this.score);
     } else {
       this.lumberjack.life = this.lumberjack.life - (1 + this.score.level / 20);
@@ -191,17 +213,19 @@ class Game {
   }
 
   _drawBranchR(Hposition) {
-    this.canvas.context.fillStyle = "blue";
-    this.canvas.context.fillRect(275, Hposition, 100, 40);
+    // this.canvas.context.fillStyle = "blue";
+    // this.canvas.context.fillRect(275, Hposition, 100, 40);
+    this.canvas.context.drawImage(this.theTree.BranchD, 275, Hposition);
   }
 
   _drawBranchL(Hposition) {
-    this.canvas.context.fillStyle = "red";
-    this.canvas.context.fillRect(125, Hposition, 100, 40);
+    // this.canvas.context.fillStyle = "red";
+    // this.canvas.context.fillRect(125, Hposition, 100, 40);
+    this.canvas.context.drawImage(this.theTree.BranchI, 17, Hposition); // 225 - 208 ancho imagen
   }
 
   _drawBranches() {
-    let Hposition = this.columns - 150; // Este valor ajusta la altura donde empezar a dibujar las ramas Valor correcto 70 para altura de 80 si altura 160, valor 150<- 40 es altura de la rama
+    let Hposition = this.columns - 140; // Este valor ajusta la altura donde empezar a dibujar las ramas Valor correcto 70 para altura de 80 si altura 160, valor 150<- 40 es altura de la rama
     // let Lposition = this.columns - 40;
     // console.log(
     //   "TCL: Game -> _drawBranches -> this.theTree  Dibujando las Ramas",
@@ -253,13 +277,14 @@ class Game {
       } else {
         // Hposition -= 40; // Altura del espacio de la No Rama
       }
-      Hposition -= 30;
+      Hposition -= 50; //30
     }
   }
 
   _drawLumberJack() {
     // console.log(this);
-    this.canvas.context.fillStyle = "yellow";
+    // this.canvas.context.fillStyle = "yellow";
+
     if (this.lumberjack.position === "right") {
       // this.canvas.context.fillRect(
       //   290,
@@ -268,11 +293,36 @@ class Game {
       //   this.lumberjack.height
       // );
       // DRAW LUMBERJACK
-      this.canvas.context.drawImage(
-        this.lumberjack.LumberJackImage,
-        290,
-        this.canvas.height - this.lumberjack.height
-      );
+      if (this.lumberjack.attacking === false) {
+        if (game.gameOverStatus === true) {
+          this.canvas.context.drawImage(
+            this.lumberjack.LumberJackImageDGOver,
+            290,
+            this.canvas.height - this.lumberjack.height
+          );
+        } else {
+          this.canvas.context.drawImage(
+            this.lumberjack.LumberJackImageD,
+            290,
+            this.canvas.height - this.lumberjack.height
+          );
+        }
+      } else {
+        if (game.gameOverStatus === true) {
+          this.canvas.context.drawImage(
+            this.lumberjack.LumberJackImageDGOver,
+            290,
+            this.canvas.height - this.lumberjack.height
+          );
+        } else {
+          //DRAW ATTACK
+          this.canvas.context.drawImage(
+            this.lumberjack.LumberJackImageDA,
+            230,
+            this.canvas.height - this.lumberjack.height
+          );
+        }
+      }
     } else {
       // this.canvas.context.fillRect(
       //   225 - 15 - this.lumberjack.width,
@@ -280,12 +330,37 @@ class Game {
       //   this.lumberjack.width,
       //   this.lumberjack.height
       // );
-      // DRAW LUMBERJACK
-      this.canvas.context.drawImage(
-        this.lumberjack.LumberJackImage,
-        225 - 15 - this.lumberjack.width,
-        this.canvas.height - this.lumberjack.height
-      );
+      if (this.lumberjack.attacking === false) {
+        if (game.gameOverStatus === true) {
+          this.canvas.context.drawImage(
+            this.lumberjack.LumberJackImageIGOver,
+            225 - 15 - this.lumberjack.width,
+            this.canvas.height - this.lumberjack.height
+          );
+        } else {
+          // DRAW LUMBERJACK
+          this.canvas.context.drawImage(
+            this.lumberjack.LumberJackImageI,
+            225 - 15 - this.lumberjack.width,
+            this.canvas.height - this.lumberjack.height
+          );
+        }
+      } else {
+        if (game.gameOverStatus === true) {
+          this.canvas.context.drawImage(
+            this.lumberjack.LumberJackImageIGOver,
+            225 - 15 - this.lumberjack.width,
+            this.canvas.height - this.lumberjack.height
+          );
+        } else {
+          //DRAW ATTACK
+          this.canvas.context.drawImage(
+            this.lumberjack.LumberJackImageIA,
+            110,
+            this.canvas.height - this.lumberjack.height
+          );
+        }
+      }
     }
   }
 
