@@ -11,6 +11,8 @@ class TheTree {
     this.BranchI.src = "/public/RamaI.png";
     this.TrunkBig = new Image();
     this.TrunkBig.src = "/public/Arbol.png";
+    this.Stones = new Image();
+    this.Stones.src = "/public/Stones.png";
   }
   _createTree(position) {
     console.log(lumberjack);
@@ -46,6 +48,27 @@ class TheTree {
       "TCL: TheTree -> constructor -> this.branchLeft",
       this.branchLeft
     );
+  }
+
+  // _drawTree(Tposition) {
+  //   // console.log(this);
+  //   // Rect to make the Tree
+  //   // this.canvas.context.fillStyle = "brown";
+  //   // this.canvas.context.fillRect(225, 0, 50, 700); // ( x inicial , y inicial, aancho, alto)
+  //   this.canvas.context.drawImage(
+  //     this.theTree.TrunkBig,
+  //     225,
+  //     0 + this.Tposition
+  //   );
+  //   this.canvas.context.drawImage(
+  //     this.theTree.TrunkBig,
+  //     225,
+  //     -700 + this.Tposition
+  //   );
+  // }
+
+  drawStones(context) {
+    context.drawImage(this.Stones, 220, 660);
   }
 
   // attackTree() // Pasar el metodo de ataque de GAME a

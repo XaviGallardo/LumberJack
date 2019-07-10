@@ -134,6 +134,7 @@ class Game {
     // console.log(this.counterFrames);
     game._clear();
     game._drawTree();
+    game.theTree.drawStones(this.canvas.context);
     game._drawLumberJack();
     game._drawBranches();
     game._gameOver();
@@ -160,6 +161,7 @@ class Game {
       game._clearPage();
       game._createBoard();
       game._drawTree();
+      game.theTree.drawStones(this.canvas.context);
       game._drawBranches();
       game._drawLumberJack();
       this.controlPanel.gameOverPanel(this.score);
