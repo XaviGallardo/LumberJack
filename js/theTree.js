@@ -9,6 +9,8 @@ class TheTree {
     this.BranchD.src = "/public/RamaD.png";
     this.BranchI = new Image();
     this.BranchI.src = "/public/RamaI.png";
+    this.TrunkBig = new Image();
+    this.TrunkBig.src = "/public/Arbol.png";
   }
   _createTree(position) {
     console.log(lumberjack);

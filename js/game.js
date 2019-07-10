@@ -16,6 +16,7 @@ class Game {
     this.gameInterval = undefined;
     this.counterFrames = 0;
     this.counterAttack = 0;
+    this.Tposition = 0;
 
     // this.interval = setInterval(updateGameArea, 20);
 
@@ -35,7 +36,7 @@ class Game {
   start() {
     game._clearPage();
     game._createBoard();
-    game._drawTree();
+    game._drawTree(this.Tposition);
     game._drawLumberJack();
     game._drawBranches();
     game._assignControlsToKeys();
@@ -103,6 +104,10 @@ class Game {
     this.lumberjack.attacking = true;
 
     this._attackTree();
+    this.Tposition += 50;
+    if (this.Tposition === 700) {
+      this.Tposition = 0;
+    }
     // game._clear();
     // game._drawTree();
     // game._drawLumberJack();
@@ -171,13 +176,8 @@ class Game {
 
   _assignControlsToKeys() {
     document.onkeydown = e => {
-      // console.log("TCL: Game -> _assignControlsToKeys -> e.keyCode", e.keyCode);
       switch (e.keyCode) {
         case 32: // spacebar
-          console.log(
-            "TCL: Game -> _assignControlsToKeys -> game.gameOverStatus",
-            game.gameOverStatus
-          );
           if (game.gameOverStatus) {
             game.reStart();
             break;
@@ -217,11 +217,21 @@ class Game {
     // document.body.insertBefore(this.buttonRight, document.body.childNodes[2]);
   }
 
-  _drawTree() {
+  _drawTree(Tposition) {
     // console.log(this);
     // Rect to make the Tree
-    this.canvas.context.fillStyle = "brown";
-    this.canvas.context.fillRect(225, 0, 50, 700); // ( x inicial , y inicial, aancho, alto)
+    // this.canvas.context.fillStyle = "brown";
+    // this.canvas.context.fillRect(225, 0, 50, 700); // ( x inicial , y inicial, aancho, alto)
+    this.canvas.context.drawImage(
+      this.theTree.TrunkBig,
+      225,
+      0 + this.Tposition
+    );
+    this.canvas.context.drawImage(
+      this.theTree.TrunkBig,
+      225,
+      -700 + this.Tposition
+    );
   }
 
   _drawBranchR(Hposition) {
