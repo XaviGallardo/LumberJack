@@ -17,6 +17,10 @@ class Game {
     this.counterFrames = 0;
     this.counterAttack = 0;
     this.Tposition = 0;
+    this.counterMoving = 0;
+
+    this.x = 0;
+    this.y = 0;
 
     // this.interval = setInterval(updateGameArea, 20);
 
@@ -102,6 +106,8 @@ class Game {
     // );
 
     this.lumberjack.attacking = true;
+    game.theTree.movingBlock = true;
+    this.counterMoving = 0;
 
     this._attackTree();
     this.Tposition += 50;
@@ -127,6 +133,7 @@ class Game {
     );
     this.counterFrames++;
     this.counterAttack++;
+    this.counterMoving++;
     console.log(
       "TCL: Game -> _updateGameArea -> this.counterAttack",
       this.counterAttack
@@ -137,6 +144,32 @@ class Game {
     game.theTree.drawStones(this.canvas.context);
     game._drawLumberJack();
     game._drawBranches();
+
+    console.log(
+      "TCL: Game -> _updateGameArea -> game.theTree.movingBlock",
+      game.theTree.movingBlock
+    );
+    if (game.theTree.movingBlock === true) {
+      console.log(
+        "TCL: Game -> _updateGameArea -> this.counterMoving",
+        this.counterMoving
+      );
+      if (this.counterMoving <= 60) {
+        game.theTree.moveStroke(this.canvas.context, this.x, this.y);
+        // Funcion para mover el elemento
+        this.x += 3.75;
+        console.log("TCL: Game -> _updateGameArea -> this.x", this.x);
+        this.y = Math.sin((1 / 75) * this.x) * 80;
+        console.log("TCL: Game -> _updateGameArea -> this.y", this.y);
+      }
+      if (this.counterMoving >= 60) {
+        game.theTree.movingBlock = false;
+        this.x = 0;
+        console.log("TCL: Game -> _updateGameArea -> this.x ", this.x);
+        this.y = 0;
+      }
+    }
+
     game._gameOver();
     game._drawScore();
     game._drawLife();

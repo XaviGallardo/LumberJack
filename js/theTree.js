@@ -5,6 +5,8 @@ class TheTree {
     this.lumberjack = lumberjack;
     this._createTree(lumberjack);
 
+    this.movingBlock = false;
+
     this.BranchD = new Image();
     this.BranchD.src = "/public/RamaD.png";
     this.BranchI = new Image();
@@ -13,6 +15,8 @@ class TheTree {
     this.TrunkBig.src = "/public/Arbol.png";
     this.Stones = new Image();
     this.Stones.src = "/public/Stones.png";
+    this.StrokeBlock = new Image();
+    this.StrokeBlock.src = "/public/StrokeBlock.png";
   }
   _createTree(position) {
     console.log(lumberjack);
@@ -71,5 +75,12 @@ class TheTree {
     context.drawImage(this.Stones, 220, 660);
   }
 
+  moveStroke(context, x, y) {
+    context.drawImage(this.StrokeBlock, 225 + x, 700 - 120 - y);
+  }
+
+  moveBranchR() {}
+
+  moveBranchL() {}
   // attackTree() // Pasar el metodo de ataque de GAME a
 }
