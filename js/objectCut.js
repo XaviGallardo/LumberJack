@@ -10,7 +10,16 @@ class ObjectCut {
 
   createObject(game) {
     if (game.lumberjack.position === "right") {
-      switch (game.theTree.branchRight[0]) {
+      console.log("cuando creo los objetos como estoy: XXXXXXXXX");
+      console.log(
+        "TCL: ObjectCut -> createObject -> game.theTree.branchLeft[0]",
+        game.theTree.branchLeft[1]
+      );
+      console.log(
+        "TCL: ObjectCut -> createObject -> game.theTree.branchLeft",
+        game.theTree.branchLeft
+      );
+      switch (game.theTree.branchLeft[1]) {
         case "NoBranch":
           this.object.src = "/public/StrokeBlock.png";
           break;
@@ -22,7 +31,7 @@ class ObjectCut {
           break;
       }
     } else {
-      switch (game.theTree.branchLeft[0]) {
+      switch (game.theTree.branchRight[1]) {
         case "NoBranch":
           this.object.src = "/public/StrokeBlock.png";
           break;
@@ -38,7 +47,6 @@ class ObjectCut {
   }
   moveStroke(context) {
     context.drawImage(this.object, 225 + this.x, 700 - 120 - this.y);
-    console.log("LLEGO a dibujar");
   }
   startFly(game) {
     game.theTree.objectsToFly[
