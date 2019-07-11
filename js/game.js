@@ -18,6 +18,7 @@ class Game {
     this.counterAttack = 0;
     this.Tposition = 0;
     this.counterMoving = 0;
+    this.sound = options.sound;
 
     this.objectToFly = new ObjectCut();
 
@@ -46,6 +47,8 @@ class Game {
     game._drawLumberJack();
     game._drawBranches();
     game._assignControlsToKeys();
+
+    game.sound.play();
 
     game._updateGameArea();
   }
