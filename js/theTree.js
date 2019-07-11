@@ -80,7 +80,8 @@ class TheTree {
   //   context.drawImage(this.objectsToFly[0].object, 225 + x, 700 - 120 - y);
   // }
 
-  drawFlyObjects(context) {
+  drawFlyObjects(context, lumberjack) {
+    console.log("TCL: TheTree -> drawFlyObjects -> lumberjack", lumberjack);
     console.log(
       "TCL: TheTree -> drawFlyObjects -> this.objectsToFly",
       this.objectsToFly
@@ -88,8 +89,13 @@ class TheTree {
     this.objectsToFly.forEach(function(elementToFly) {
       if (elementToFly.moving === true) {
         if (elementToFly.counterMoving <= 60) {
-          elementToFly.moveStroke(context);
-          elementToFly.updateCoordinates();
+          if (elementToFly.position === "left") {
+            elementToFly.moveStrokeToRight(context);
+            elementToFly.updateCoordinates();
+          } else {
+            elementToFly.moveStrokeToLeft(context);
+            elementToFly.updateCoordinates();
+          }
           elementToFly.counterMoving++;
         }
         if (elementToFly.counterMoving >= 60) {

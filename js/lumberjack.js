@@ -3,8 +3,8 @@ class LumberJack {
     this.width = width;
     this.height = height;
     this.position = "right";
-    this.maxLife = 30000; // 300 ha de ser , se amplia para poder ajustar
-    this.life = 30000; // 300 ha de ser , se amplia para poder ajustar
+    this.maxLife = 300; // 300 ha de ser , se amplia para poder ajustar
+    this.life = 300; // 300 ha de ser , se amplia para poder ajustar
 
     this.attacking = false;
 

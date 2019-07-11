@@ -142,7 +142,7 @@ class Game {
     //   "TCL: Game -> _updateGameArea -> game.theTree.objectsToFly[0].moving",
     //   game.theTree.objectsToFly[0].moving
     // );
-    game.theTree.drawFlyObjects(this.canvas.context);
+    game.theTree.drawFlyObjects(this.canvas.context, this.lumberjack);
     // game.theTree.objectsToFly.forEach(
     //   function(elementToFly) {
     //     if (elementToFly.moving === true) {
