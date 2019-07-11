@@ -5,6 +5,7 @@ class TheTree {
     this.lumberjack = lumberjack;
     this._createTree(lumberjack);
 
+    this.objectsToFly = []; // Los objetos que vuelan al cortar
     this.movingBlock = false;
 
     this.BranchD = new Image();
@@ -75,8 +76,28 @@ class TheTree {
     context.drawImage(this.Stones, 220, 660);
   }
 
-  moveStroke(context, x, y) {
-    context.drawImage(this.StrokeBlock, 225 + x, 700 - 120 - y);
+  // moveStroke(context, x, y) {
+  //   context.drawImage(this.objectsToFly[0].object, 225 + x, 700 - 120 - y);
+  // }
+
+  drawFlyObjects(context) {
+    console.log(
+      "TCL: TheTree -> drawFlyObjects -> this.objectsToFly",
+      this.objectsToFly
+    );
+    this.objectsToFly.forEach(function(elementToFly) {
+      if (elementToFly.moving === true) {
+        if (elementToFly.counterMoving <= 60) {
+          elementToFly.moveStroke(context);
+          elementToFly.updateCoordinates();
+          elementToFly.counterMoving++;
+        }
+        if (elementToFly.counterMoving >= 60) {
+          elementToFly.moving = false;
+          elementToFly.resetCoordinates();
+        }
+      }
+    });
   }
 
   moveBranchR() {}

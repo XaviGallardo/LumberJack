@@ -19,8 +19,10 @@ class Game {
     this.Tposition = 0;
     this.counterMoving = 0;
 
-    this.x = 0;
-    this.y = 0;
+    this.objectToFly = new ObjectCut();
+
+    // this.x = 0;
+    // this.y = 0;
 
     // this.interval = setInterval(updateGameArea, 20);
 
@@ -67,6 +69,7 @@ class Game {
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this._createControls();
     game._drawScore();
+    this.objectToFly.createObject(game);
   }
 
   _attack(event) {
@@ -91,22 +94,12 @@ class Game {
       //   console.log("De izquierda a derecha");
       this.lumberjack._changeSide();
     }
-    // this.lumberjack.position;
-    // console.log(
-    //   "TCL: Game -> _attack -> this.lumberjack.position",
-    //   this.lumberjack.position
-    // );
-    // console.log(
-    //   "TCL: Game -> _attack -> this.buttonLeft.value",
-    //   this.buttonLeft.value
-    // );
-    // console.log(
-    //   "TCL: Game -> _attack -> this.lumberjack.position",
-    //   this.lumberjack.position
-    // );
 
     this.lumberjack.attacking = true;
-    game.theTree.movingBlock = true;
+    this.objectToFly = new ObjectCut();
+    this.objectToFly.createObject(game);
+    this.objectToFly.startFly(game);
+
     this.counterMoving = 0;
 
     this._attackTree();
@@ -145,30 +138,50 @@ class Game {
     game._drawLumberJack();
     game._drawBranches();
 
-    console.log(
-      "TCL: Game -> _updateGameArea -> game.theTree.movingBlock",
-      game.theTree.movingBlock
-    );
-    if (game.theTree.movingBlock === true) {
-      console.log(
-        "TCL: Game -> _updateGameArea -> this.counterMoving",
-        this.counterMoving
-      );
-      if (this.counterMoving <= 60) {
-        game.theTree.moveStroke(this.canvas.context, this.x, this.y);
-        // Funcion para mover el elemento
-        this.x += 3.75;
-        console.log("TCL: Game -> _updateGameArea -> this.x", this.x);
-        this.y = Math.sin((1 / 75) * this.x) * 80;
-        console.log("TCL: Game -> _updateGameArea -> this.y", this.y);
-      }
-      if (this.counterMoving >= 60) {
-        game.theTree.movingBlock = false;
-        this.x = 0;
-        console.log("TCL: Game -> _updateGameArea -> this.x ", this.x);
-        this.y = 0;
-      }
-    }
+    // console.log(
+    //   "TCL: Game -> _updateGameArea -> game.theTree.objectsToFly[0].moving",
+    //   game.theTree.objectsToFly[0].moving
+    // );
+    game.theTree.drawFlyObjects(this.canvas.context);
+    // game.theTree.objectsToFly.forEach(
+    //   function(elementToFly) {
+    //     if (elementToFly.moving === true) {
+    //       if (elementToFly.counterMoving <= 60) {
+    //         elementToFly.moveStroke(this.canvas.context);
+    //         elementToFly.updateCoordinates();
+    //         elementToFly.counterMoving++;
+    //       }
+    //       if (elementToFly.counterMoving >= 60) {
+    //         elementToFly.moving = false;
+    //         elementToFly.resetCoordinates();
+    //       }
+    //     }
+    //   }.bind(this)
+    // );
+    // if (game.theTree.objectsToFly[0].moving === true) {
+    //   console.log(
+    //     "TCL: Game -> _updateGameArea -> this.counterMoving",
+    //     this.counterMoving
+    //   );
+    //   if (game.theTree.objectsToFly[0].counterMoving <= 60) {
+    //     // game.theTree.moveStroke(this.canvas.context, this.x, this.y);
+    //     game.theTree.objectsToFly[0].moveStroke(this.canvas.context);
+    //     // Funcion para mover el elemento
+    //     // this.x += 3.75;
+    //     // console.log("TCL: Game -> _updateGameArea -> this.x", this.x);
+    //     // this.y = Math.sin((1 / 75) * this.x) * 80;
+    //     // console.log("TCL: Game -> _updateGameArea -> this.y", this.y);
+    //     game.theTree.objectsToFly[0].updateCoordinates();
+    //   }
+    //   if (game.theTree.objectsToFly[0].counterMoving >= 60) {
+    //     game.theTree.objectsToFly[0].moving = false;
+
+    //     game.theTree.objectsToFly[0].resetCoordinates();
+    //     // this.x = 0;
+    //     // console.log("TCL: Game -> _updateGameArea -> this.x ", this.x);
+    //     // this.y = 0;
+    //   }
+    // }
 
     game._gameOver();
     game._drawScore();
