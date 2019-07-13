@@ -9,17 +9,17 @@ class LumberJack {
     this.attacking = false;
 
     this.LumberJackImageDGOver = new Image();
-    this.LumberJackImageDGOver.src = "/public/lumberAccidentD.png";
+    this.LumberJackImageDGOver.src = "public/lumberAccidentD.png";
     this.LumberJackImageIGOver = new Image();
-    this.LumberJackImageIGOver.src = "/public/lumberAccidenteIzq.png";
+    this.LumberJackImageIGOver.src = "public/lumberAccidenteIzq.png";
     this.LumberJackImageD = new Image();
-    this.LumberJackImageD.src = "/public/lumberjack_No.png";
+    this.LumberJackImageD.src = "public/lumberjack_No.png";
     this.LumberJackImageI = new Image();
-    this.LumberJackImageI.src = "/public/lumberIzquierda.png";
+    this.LumberJackImageI.src = "public/lumberIzquierda.png";
     this.LumberJackImageDA = new Image();
-    this.LumberJackImageDA.src = "/public/lumberDerechaAtack.png";
+    this.LumberJackImageDA.src = "public/lumberDerechaAtack.png";
     this.LumberJackImageIA = new Image();
-    this.LumberJackImageIA.src = "/public/lumberIzqAtack.png";
+    this.LumberJackImageIA.src = "public/lumberIzqAtack.png";
   }
   _changeSide() {
     console.log("CambioLado");

@@ -9,15 +9,15 @@ class TheTree {
     this.movingBlock = false;
 
     this.BranchD = new Image();
-    this.BranchD.src = "/public/RamaD.png";
+    this.BranchD.src = "public/RamaD.png";
     this.BranchI = new Image();
-    this.BranchI.src = "/public/RamaI.png";
+    this.BranchI.src = "public/RamaI.png";
     this.TrunkBig = new Image();
-    this.TrunkBig.src = "/public/Arbol.png";
+    this.TrunkBig.src = "public/Arbol.png";
     this.Stones = new Image();
-    this.Stones.src = "/public/Stones.png";
+    this.Stones.src = "public/Stones.png";
     this.StrokeBlock = new Image();
-    this.StrokeBlock.src = "/public/StrokeBlock.png";
+    this.StrokeBlock.src = "public/StrokeBlock.png";
   }
   _createTree(position) {
     console.log(lumberjack);
