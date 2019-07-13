@@ -25,12 +25,12 @@ class ObjectCut {
       switch (game.theTree.branchLeft[1]) {
         case "NoBranch":
           this.name = "trunk";
-          this.object.src = "/public/StrokeBlock.png";
+          this.object.src = "public/StrokeBlock.png";
           break;
 
         case "Branch":
           this.name = "branch";
-          this.object.src = "/public/RamaI.png";
+          this.object.src = "public/RamaI.png";
           break;
         default:
           break;
@@ -39,7 +39,7 @@ class ObjectCut {
       switch (game.theTree.branchRight[1]) {
         case "NoBranch":
           this.name = "trunk";
-          this.object.src = "/public/StrokeBlock.png";
+          this.object.src = "public/StrokeBlock.png";
           break;
 
         case "Branch":
