@@ -21,25 +21,17 @@ class Game {
     this.sound = options.sound;
 
     this.objectToFly = new ObjectCut();
-
-    // this.x = 0;
-    // this.y = 0;
-
-    // this.interval = setInterval(updateGameArea, 20);
-
-    //   this.maxCells = options.maxCells;
-    //   this.food = undefined;
-    //   this.ctx = options.ctx;
-    //   this.snake = options.snake;
-    //   this.gameOver = undefined;
   }
+
   _clear() {
     this.canvas.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
+
   _clearPage() {
     let element = document.getElementsByTagName("div")[0];
     document.getElementsByTagName("div")[0].parentNode.removeChild(element);
   }
+
   start() {
     game._clearPage();
     game._createBoard();
@@ -76,12 +68,6 @@ class Game {
   }
 
   _attack(event) {
-    // console.log("TCL: Game -> _attack -> event", event);
-    // event.target;
-    // console.log("TCL: Game -> _attack -> event.target", event.target);
-    // console.log("TCL: Game -> _attack -> this.buttonLeft", this.buttonLeft);
-    // console.log("TCL: Game -> _attack -> this.buttonRight", this.buttonRight);
-
     if (
       (this.lumberjack.position === "right" &&
         event.target.innerText === "LEFT") ||
@@ -110,12 +96,6 @@ class Game {
     if (this.Tposition === 700) {
       this.Tposition = 0;
     }
-    // game._clear();
-    // game._drawTree();
-    // game._drawLumberJack();
-    // game._drawBranches();
-    // game._gameOver();
-    // game._drawScore();
   }
 
   _drawLife() {
@@ -130,11 +110,7 @@ class Game {
     this.counterFrames++;
     this.counterAttack++;
     this.counterMoving++;
-    console.log(
-      "TCL: Game -> _updateGameArea -> this.counterAttack",
-      this.counterAttack
-    );
-    // console.log(this.counterFrames);
+
     game._clear();
     game._drawTree();
     game.theTree.drawStones(this.canvas.context);
@@ -193,10 +169,6 @@ class Game {
       game._drawLevel();
     }
     if (this.counterAttack === 10) {
-      console.log(
-        "TCL: Game -> _updateGameArea -> this.counterAttack",
-        this.counterAttack
-      );
       this.lumberjack.attacking = false;
       this.counterAttack = 0;
     }
@@ -216,12 +188,6 @@ class Game {
       this.controlPanel.gameOverPanel(this.score);
     } else {
       this.lumberjack.life = this.lumberjack.life - (1 + this.score.level / 20);
-      // console.log(
-      //   "TCL: Game -> _gameOver -> this.lumberjack.life",
-      //   this.lumberjack.life
-      // );
-
-      // this.score.points++; // Aquí controlar la vida basada en el tiempo.
     }
   }
 

@@ -29,10 +29,4 @@ document.onload = (function() {
   initialStatus()();
 
   controlPanel.buttonStartGame();
-
-  // game.gameOver = function() {
-  //   let gameOver = document.getElementById("gameover");
-  //   canvas.style = "display: none";
-  //   gameOver.style = "display: block";
-  // };
 })();
