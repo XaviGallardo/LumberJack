@@ -44,7 +44,7 @@ class ObjectCut {
 
         case "Branch":
           this.name = "branch";
-          this.object.src = "/public/RamaD.png";
+          this.object.src = "public/RamaD.png";
           break;
         default:
           break;
