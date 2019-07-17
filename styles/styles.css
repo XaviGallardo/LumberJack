@@ -1,4 +1,48 @@
 #myGameZone {
   border: 1px solid black;
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
+}
+
+body {
+  width: 99%;
+  height: 800px;
+  background-color: lightblue;
+  background-image: url("../public/koala.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+canvas {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+#startPage button {
+  display: flex;
+}
+
+#startPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#playButton {
+  color: white;
+  font-size: 5em;
+  margin: auto;
+  background-color: transparent;
+  padding: 20px;
+  border-color: transparent;
+}
+#instructionsButton {
+  color: white;
+  font-size: 3em;
+  margin: 0 auto;
+  background-color: transparent;
+  padding: 20px;
+  border-color: transparent;
+}
+
+.no-show {
+  display: none;
 }
