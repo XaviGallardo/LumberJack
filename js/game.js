@@ -443,6 +443,7 @@ class Game {
       this.score.points++;
       this.score.counter++;
       if (this.score.counter === 15) {
+        this.sounds[4].play();
         this.score.level++;
         this.counterFrames = 0;
         // game._drawLevel();

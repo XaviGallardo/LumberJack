@@ -21,6 +21,8 @@ document.onload = (function() {
       sounds.push(sound);
       sound = new Sound("public/nonono.mp3");
       sounds.push(sound);
+      sound = new Sound("public/levelUp.mp3");
+      sounds.push(sound);
 
       game = new Game({
         rows: 500,
