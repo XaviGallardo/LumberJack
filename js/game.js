@@ -182,6 +182,7 @@ class Game {
     if (this._BranchHitHead() === true || this.lumberjack.life <= 0) {
       // window.alert("Golpe en la cabeza");
       this.gameOverStatus = true;
+      this.sounds[3].play();
       this._stop();
       game._clearPage();
       game._createBoard();
