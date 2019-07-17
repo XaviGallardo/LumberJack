@@ -4,6 +4,7 @@ var theTree;
 var controlPanel;
 var initialStatus;
 var sound;
+var sounds = [];
 
 document.onload = (function() {
   initialStatus = function() {
@@ -13,6 +14,11 @@ document.onload = (function() {
       controlPanel = new ControlPanel();
 
       sound = new Sound("public/ArbolVa.mp3");
+      sounds.push(sound);
+      sound = new Sound("public/ChopWood.mp3");
+      sounds.push(sound);
+      sound = new Sound("public/ChopWood.mp3");
+      sounds.push(sound);
 
       game = new Game({
         rows: 500,
@@ -21,7 +27,7 @@ document.onload = (function() {
         theTree: new TheTree(lumberjack),
         controlpanel: controlPanel,
         starting: initialStatus,
-        sound: sound
+        sounds: sounds
       });
     };
   };

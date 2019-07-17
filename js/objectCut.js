@@ -26,11 +26,30 @@ class ObjectCut {
         case "NoBranch":
           this.name = "trunk";
           this.object.src = "public/StrokeBlock.png";
+
+          console.log(
+            "TCL: ObjectCut -> createObject -> game.theTree.objectsToFly.length",
+            game.theTree.objectsToFly.length
+          );
+          if (
+            game.theTree.objectsToFly.length > 0 &&
+            game.gameOverStatus === false
+          ) {
+            game.sounds[1].play();
+          }
+          console.log("1");
           break;
 
         case "Branch":
           this.name = "branch";
           this.object.src = "public/RamaI.png";
+          if (
+            game.theTree.objectsToFly.length > 0 &&
+            game.gameOverStatus === false
+          ) {
+            game.sounds[2].play();
+          }
+          console.log("2");
           break;
         default:
           break;
@@ -40,11 +59,26 @@ class ObjectCut {
         case "NoBranch":
           this.name = "trunk";
           this.object.src = "public/StrokeBlock.png";
+          if (
+            game.theTree.objectsToFly.length > 0 &&
+            game.gameOverStatus === false
+          ) {
+            game.sounds[1].play();
+          }
+
+          console.log("3");
           break;
 
         case "Branch":
           this.name = "branch";
           this.object.src = "public/RamaD.png";
+          if (
+            game.theTree.objectsToFly.length > 0 &&
+            game.gameOverStatus === false
+          ) {
+            game.sounds[2].play();
+          }
+          console.log("4");
           break;
         default:
           break;

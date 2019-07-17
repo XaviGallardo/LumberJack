@@ -18,7 +18,7 @@ class Game {
     this.counterAttack = 0;
     this.Tposition = 0;
     this.counterMoving = 0;
-    this.sound = options.sound;
+    this.sounds = options.sounds;
 
     this.objectToFly = new ObjectCut();
   }
@@ -40,7 +40,7 @@ class Game {
     game._drawBranches();
     game._assignControlsToKeys();
 
-    game.sound.play();
+    game.sounds[0].play();
 
     game._updateGameArea();
   }
@@ -68,6 +68,8 @@ class Game {
   }
 
   _attack(event) {
+    console.log("TCL: Game -> _attack -> event", event);
+    console.log("Esto es this", this);
     if (
       (this.lumberjack.position === "right" &&
         event.target.innerText === "LEFT") ||
@@ -84,7 +86,9 @@ class Game {
       this.lumberjack._changeSide();
     }
 
+    // this.sounds[1].play(); // Hay un evento que si es rápido no lo puede reproducir
     this.lumberjack.attacking = true;
+
     this.objectToFly = new ObjectCut();
     this.objectToFly.createObject(game);
     this.objectToFly.startFly(game);
