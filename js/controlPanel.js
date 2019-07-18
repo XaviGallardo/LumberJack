@@ -46,7 +46,8 @@ class ControlPanel {
     var showInstructions = document.createElement("div");
     showInstructions.setAttribute("id", "showInstructionsPannel");
     showInstructions.setAttribute("class", "no-show");
-    showInstructions.innerHTML = "Explicación Funcionamiento";
+    showInstructions.innerHTML =
+      "Explicación Funcionamiento: <br> Utiliza las flechas para cortar el arbol desde el lado que indica la flecha, has de tener en cuenta que la rama no te puede caer encima, sino estás muerto. Date prisa porque el tiempo va en tu contra.";
     document.getElementById("startPage").appendChild(showInstructions);
   }
 

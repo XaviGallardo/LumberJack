@@ -46,3 +46,13 @@ canvas {
 .no-show {
   display: none;
 }
+
+#showInstructionsPannel {
+  position: absolute;
+  top: 420px;
+  left: 50%;
+  right: 50%;
+  width: 30%;
+  font-size: 2em;
+  color: white;
+}
