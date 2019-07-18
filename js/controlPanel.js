@@ -10,7 +10,21 @@ class ControlPanel {
     this.reStartGame.innerHTML = "NEW GAME";
     this.reStartGame.onclick = game.reStart;
     document.getElementsByTagName("div")[0].appendChild(this.reStartGame);
+
+    this.buttonReCharge();
   }
+
+  buttonReCharge() {
+    var reChargePage = document.createElement("button");
+    reChargePage.innerHTML = "New Player";
+    reChargePage.onclick = this._refreshPage;
+    document.getElementsByTagName("div")[0].appendChild(reChargePage);
+  }
+
+  _refreshPage() {
+    window.location.reload();
+  }
+
   buttonStartGame() {
     this.startPage.setAttribute("id", "startPage");
     this.playGame.setAttribute("id", "playButton");
@@ -47,7 +61,7 @@ class ControlPanel {
     showInstructions.setAttribute("id", "showInstructionsPannel");
     showInstructions.setAttribute("class", "no-show");
     showInstructions.innerHTML =
-      "Explicación Funcionamiento: <br> Utiliza las flechas para cortar el arbol desde el lado que indica la flecha, has de tener en cuenta que la rama no te puede caer encima, sino estás muerto. Date prisa porque el tiempo va en tu contra.";
+      "Explicación Funcionamiento: <br> Utiliza las flechas para cortar el arbol desde el lado que indica la flecha, has de tener en cuenta que la rama no te puede caer encima, si no estás muerto. Date prisa porque el tiempo va en tu contra.";
     document.getElementById("startPage").appendChild(showInstructions);
   }
 
