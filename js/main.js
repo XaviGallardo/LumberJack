@@ -5,6 +5,7 @@ var controlPanel;
 var initialStatus;
 var sound;
 var sounds = [];
+var totalScore;
 
 document.onload = (function() {
   initialStatus = function() {
@@ -12,6 +13,7 @@ document.onload = (function() {
       console.log("iniciando ...");
       lumberjack = new LumberJack(100, 160);
       controlPanel = new ControlPanel();
+      totalScore = new TotalScore();
 
       sound = new Sound("public/ArbolVa.mp3");
       sounds.push(sound);
@@ -31,7 +33,8 @@ document.onload = (function() {
         theTree: new TheTree(lumberjack),
         controlpanel: controlPanel,
         starting: initialStatus,
-        sounds: sounds
+        sounds: sounds,
+        totalScore: totalScore
       });
     };
   };

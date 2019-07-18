@@ -21,6 +21,7 @@ class Game {
     this.sounds = options.sounds;
 
     this.objectToFly = new ObjectCut();
+    this.totalScore = options.totalScore;
   }
 
   _clear() {
