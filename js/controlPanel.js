@@ -54,6 +54,7 @@ class ControlPanel {
     document.getElementsByTagName("div")[0].parentNode.removeChild(element);
     this._buttonReStart();
     console.log("TCL: ControlPanel -> gameOverPanel -> element", element);
+    game.totalScore.updateScore("Dfdsf", score);
   }
 
   createHowToPlay() {
