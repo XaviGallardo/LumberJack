@@ -26,10 +26,10 @@ function storageAvailable(type) {
 
 if (storageAvailable("localStorage")) {
   // Yippee! We can use localStorage awesomeness
-  console.log("We can use it!!");
+  // console.log("We can use it!!");
 } else {
   // Too bad, no localStorage for us
-  console.log("We can NOT use it!!");
+  // console.log("We can NOT use it!!");
 }
 
 class TotalScore {
@@ -47,9 +47,9 @@ class TotalScore {
       { name: "", score: 0 }
     ];
 
-    console.log("TCL: TotalScore -> constructor -> this.scores", this.scores);
+    // console.log("TCL: TotalScore -> constructor -> this.scores", this.scores);
     this.getLocalData();
-    console.log("TCL: TotalScore -> constructor -> this.scores", this.scores);
+    // console.log("TCL: TotalScore -> constructor -> this.scores", this.scores);
   }
 
   getLocalData() {
@@ -60,10 +60,10 @@ class TotalScore {
           localStorage.getItem(this.scores[index].name)
         );
       }
-      console.log(
-        "TCL: TotalScore -> printLocalData -> this.scores",
-        this.scores
-      );
+      // console.log(
+      //   "TCL: TotalScore -> printLocalData -> this.scores",
+      //   this.scores
+      // );
     }
   }
 
@@ -72,7 +72,7 @@ class TotalScore {
       localStorage.setItem(index, this.scores[index].name);
       localStorage.setItem(this.scores[index].name, this.scores[index].score);
     }
-    console.log("TCL: TotalScore -> setLocalScore -> this.scores", this.scores);
+    // console.log("TCL: TotalScore -> setLocalScore -> this.scores", this.scores);
   }
 
   updateScore(name, score) {
@@ -88,25 +88,25 @@ class TotalScore {
       this.scores.push({ name: name, score: score.points });
     }
 
-    console.log(
-      "TCL: TotalScore -> setLocalScore -> this.scores AFTER ACTUALIZAR SIN ORDENAR",
-      this.scores
-    );
+    // console.log(
+    //   "TCL: TotalScore -> setLocalScore -> this.scores AFTER ACTUALIZAR SIN ORDENAR",
+    //   this.scores
+    // );
 
     this.scores.sort(function(a, b) {
       return b.score - a.score;
     });
-    console.log(
-      "TCL: TotalScore -> setLocalScore -> this.scores AFTER ACTUALIZAR ORDENADO",
-      this.scores
-    );
+    // console.log(
+    //   "TCL: TotalScore -> setLocalScore -> this.scores AFTER ACTUALIZAR ORDENADO",
+    //   this.scores
+    // );
     if (this.scores.length === 11) {
       this.scores.pop();
     }
-    console.log(
-      "TCL: TotalScore -> setLocalScore -> this.scores AFTER ACTUALIZAR QUITO ULTIMO ELEMENTO",
-      this.scores
-    );
+    // console.log(
+    //   "TCL: TotalScore -> setLocalScore -> this.scores AFTER ACTUALIZAR QUITO ULTIMO ELEMENTO",
+    //   this.scores
+    // );
     localStorage.clear();
     this.setLocalScore();
     this.printTotalResults();

@@ -53,16 +53,16 @@ class ControlPanel {
     this.instructions.innerHTML = "Instructions";
     this.instructions.onclick = this.showHowToPlay;
     document.getElementById("startPage").appendChild(this.instructions);
-    console.log(
-      "TCL: ControlPanel -> constructor -> this.playGame",
-      this.playGame
-    );
+    // console.log(
+    //   "TCL: ControlPanel -> constructor -> this.playGame",
+    //   this.playGame
+    // );
     this.createHowToPlay();
   }
 
   checkNameInsert() {
     var name = document.getElementById("name").value;
-    console.log("TCL: ControlPanel -> checkNameInsert -> name", name);
+    // console.log("TCL: ControlPanel -> checkNameInsert -> name", name);
 
     if (name) {
       game.start(name);
@@ -70,7 +70,7 @@ class ControlPanel {
   }
 
   gameOverPanel(score) {
-    console.log("TCL: ControlPanel -> gameOverPanel -> score", score);
+    // console.log("TCL: ControlPanel -> gameOverPanel -> score", score);
     this.gameOver.setAttribute("id", "finalResult");
     this.gameOver.innerHTML = `TOTAL  ${score.text} ${score.points}`;
     document
@@ -79,7 +79,7 @@ class ControlPanel {
     let element = document.getElementsByTagName("div")[0];
     document.getElementsByTagName("div")[0].parentNode.removeChild(element);
     this._buttonReStart();
-    console.log("TCL: ControlPanel -> gameOverPanel -> element", element);
+    // console.log("TCL: ControlPanel -> gameOverPanel -> element", element);
     game.totalScore.updateScore(score.name, score);
   }
 

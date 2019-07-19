@@ -10,7 +10,7 @@ var totalScore;
 document.onload = (function() {
   initialStatus = function() {
     return function() {
-      console.log("iniciando ...");
+      // console.log("iniciando ...");
       lumberjack = new LumberJack(100, 160);
       controlPanel = new ControlPanel();
       totalScore = new TotalScore();

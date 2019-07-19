@@ -56,8 +56,8 @@ class Game {
     let element = document.getElementsByTagName("canvas")[0];
     document.getElementsByTagName("canvas")[0].parentNode.removeChild(element);
 
-    console.log("TCL: Game -> reStart -> game.score.name", game.score.name);
-    console.log("TCL: Game -> reStart -> this.score.name", this.score.name);
+    // console.log("TCL: Game -> reStart -> game.score.name", game.score.name);
+    // console.log("TCL: Game -> reStart -> this.score.name", this.score.name);
     game.start(this.score.name);
   }
 
@@ -73,8 +73,8 @@ class Game {
   }
 
   _attack(event) {
-    console.log("TCL: Game -> _attack -> event", event);
-    console.log("Esto es this", this);
+    // console.log("TCL: Game -> _attack -> event", event);
+    // console.log("Esto es this", this);
     if (
       (this.lumberjack.position === "right" &&
         event.target.innerText === "LEFT") ||
@@ -426,15 +426,15 @@ class Game {
   _attackTree() {
     let random = 0;
     this.theTree.branchRight.shift();
-    console.log(
-      "TCL: Game -> _attackTree -> this.theTree.branchRight",
-      this.theTree.branchRight
-    );
+    // console.log(
+    //   "TCL: Game -> _attackTree -> this.theTree.branchRight",
+    //   this.theTree.branchRight
+    // );
     this.theTree.branchLeft.shift();
-    console.log(
-      "TCL: Game -> _attackTree -> this.theTree.branchLeft",
-      this.theTree.branchLeft
-    );
+    // console.log(
+    //   "TCL: Game -> _attackTree -> this.theTree.branchLeft",
+    //   this.theTree.branchLeft
+    // );
 
     if (this.lumberjack.position === "right") {
       this.theTree.branchLeft[0] = "NoBranch";
@@ -487,11 +487,11 @@ class Game {
   _drawLevel() {
     // let procesoID;
     // procesoID = setInterval(this._drawLevel, 10);
-    console.log("he llamado DRAW LEVEL");
+    // console.log("he llamado DRAW LEVEL");
     this.canvas.context.fillStyle = "white";
     this.canvas.context.font = "45px Comic-sans";
     this.canvas.context.fillText("LEVEL:  " + this.score.level, 150, 275);
-    console.log("Deberia haber DRAW LEVEL");
+    // console.log("Deberia haber DRAW LEVEL");
   }
 
   //   _drawBoard() {

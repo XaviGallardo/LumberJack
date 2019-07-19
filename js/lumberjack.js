@@ -22,16 +22,16 @@ class LumberJack {
     this.LumberJackImageIA.src = "public/lumberIzqAtack.png";
   }
   _changeSide() {
-    console.log("CambioLado");
+    // console.log("CambioLado");
     if (this.position === "right") {
-      console.log("TCL: LumberJack -> _changeSide -> this", this);
+      // console.log("TCL: LumberJack -> _changeSide -> this", this);
       this.position = "left";
     } else {
       this.position = "right";
     }
-    console.log("TCL: LumberJack -> _changeSide -> this", this);
+    // console.log("TCL: LumberJack -> _changeSide -> this", this);
   }
   _cutTheTree() {
-    console.log("Cut the Tree");
+    // console.log("Cut the Tree");
   }
 }

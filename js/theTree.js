@@ -20,7 +20,7 @@ class TheTree {
     this.StrokeBlock.src = "public/StrokeBlock.png";
   }
   _createTree(position) {
-    console.log(lumberjack);
+    // console.log(lumberjack);
     let random = 0;
     if (this.lumberjack.position === "right") {
       for (let i = 0; i < 30; i++) {
@@ -45,14 +45,14 @@ class TheTree {
         random = Math.floor(Math.random() * (2 - 0)) + 0;
       }
     }
-    console.log(
-      "TCL: TheTree -> constructor -> this.branchRight",
-      this.branchRight
-    );
-    console.log(
-      "TCL: TheTree -> constructor -> this.branchLeft",
-      this.branchLeft
-    );
+    // console.log(
+    //   "TCL: TheTree -> constructor -> this.branchRight",
+    //   this.branchRight
+    // );
+    // console.log(
+    //   "TCL: TheTree -> constructor -> this.branchLeft",
+    //   this.branchLeft
+    // );
   }
 
   // _drawTree(Tposition) {
@@ -81,11 +81,11 @@ class TheTree {
   // }
 
   drawFlyObjects(context, lumberjack) {
-    console.log("TCL: TheTree -> drawFlyObjects -> lumberjack", lumberjack);
-    console.log(
-      "TCL: TheTree -> drawFlyObjects -> this.objectsToFly",
-      this.objectsToFly
-    );
+    // console.log("TCL: TheTree -> drawFlyObjects -> lumberjack", lumberjack);
+    // console.log(
+    //   "TCL: TheTree -> drawFlyObjects -> this.objectsToFly",
+    //   this.objectsToFly
+    // );
     this.objectsToFly.forEach(function(elementToFly) {
       if (elementToFly.moving === true) {
         if (elementToFly.counterMoving <= 60) {
