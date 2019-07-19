@@ -109,5 +109,26 @@ class TotalScore {
     );
     localStorage.clear();
     this.setLocalScore();
+    this.printTotalResults();
+  }
+
+  printTotalResults() {
+    this.getLocalData();
+    var results = document.createElement("div");
+    results.setAttribute("id", "totalResults");
+    results.innerHTML = "<h3> 10 BEST PLAYERS</h3>";
+    document.getElementById("finalResult").appendChild(results);
+    this.scores.forEach(this.insertElementFromResults);
+  }
+  insertElementFromResults(result, index) {
+    if (result.name) {
+      var element = document.createElement("li");
+      element.setAttribute("class", "lista_resultado");
+      element.innerHTML = `${index + 1} -> ${result.name} = ${
+        result.score
+      } Points`;
+      document.getElementById("totalResults").appendChild(element);
+      var div = document.getElementById("totalResults");
+    }
   }
 }

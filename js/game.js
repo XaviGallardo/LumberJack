@@ -33,7 +33,8 @@ class Game {
     document.getElementsByTagName("div")[0].parentNode.removeChild(element);
   }
 
-  start() {
+  start(name) {
+    this.score.name = name;
     game._clearPage();
     game._createBoard();
     game._drawTree(this.Tposition);
@@ -54,7 +55,7 @@ class Game {
     game.starting()();
     let element = document.getElementsByTagName("canvas")[0];
     document.getElementsByTagName("canvas")[0].parentNode.removeChild(element);
-    game.start();
+    game.start(this.score.name);
   }
 
   _createBoard() {

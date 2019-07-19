@@ -5,7 +5,15 @@ class ControlPanel {
     this.instructions = document.createElement("button");
     this.reStartGame = document.createElement("button");
     this.gameOver = document.createElement("div");
+    this.playerGame = document.createElement("div");
   }
+
+  _setPlayerName() {
+    this.playerGame.innerHTML =
+      "<h1>Insert Lumberjack Name</h1>" + "<input type=`text`  id=`name`>";
+    document.getElementsByTagName("div")[0].appendChild(this.playerGame);
+  }
+
   _buttonReStart() {
     this.reStartGame.innerHTML = "NEW GAME";
     this.reStartGame.onclick = game.reStart;
@@ -26,11 +34,17 @@ class ControlPanel {
   }
 
   buttonStartGame() {
+    this.playerGame.innerHTML =
+      "<h1>Welcome to Lumberjack GAME</h1><h2>Please, insert your Name</h2><input type=text id=name placeholder=LumberJack's_Name>";
+    this.playerGame.setAttribute("id", "playerForm");
+
     this.startPage.setAttribute("id", "startPage");
     this.playGame.setAttribute("id", "playButton");
     this.playGame.innerHTML = "PLAY";
-    this.playGame.onclick = game.start;
+    // this.playGame.onclick = game.start;
+    this.playGame.onclick = this.checkNameInsert;
     document.body.insertBefore(this.startPage, document.body.childNodes[1]);
+    document.getElementsByTagName("div")[0].appendChild(this.playerGame);
     document.getElementsByTagName("div")[0].appendChild(this.playGame);
 
     this.instructions.setAttribute("id", "instructionsButton");
@@ -44,8 +58,18 @@ class ControlPanel {
     this.createHowToPlay();
   }
 
+  checkNameInsert() {
+    var name = document.getElementById("name").value;
+    console.log("TCL: ControlPanel -> checkNameInsert -> name", name);
+
+    if (name) {
+      game.start(name);
+    }
+  }
+
   gameOverPanel(score) {
     console.log("TCL: ControlPanel -> gameOverPanel -> score", score);
+    this.gameOver.setAttribute("id", "finalResult");
     this.gameOver.innerHTML = `TOTAL  ${score.text} ${score.points}`;
     document
       .getElementsByTagName("div")[0]
@@ -54,7 +78,7 @@ class ControlPanel {
     document.getElementsByTagName("div")[0].parentNode.removeChild(element);
     this._buttonReStart();
     console.log("TCL: ControlPanel -> gameOverPanel -> element", element);
-    game.totalScore.updateScore("Dfdsf", score);
+    game.totalScore.updateScore(score.name, score);
   }
 
   createHowToPlay() {
