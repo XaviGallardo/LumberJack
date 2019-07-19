@@ -186,7 +186,7 @@ class Game {
     if (this.counterFrames < 60) {
       game._drawLevel();
     }
-    if (this.counterAttack === 10) {
+    if (this.counterAttack === 5) {
       this.lumberjack.attacking = false;
       this.counterAttack = 0;
     }
