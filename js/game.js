@@ -10,7 +10,7 @@ class Game {
     this.theTree = options.theTree;
     this.Hposition = this.columns - 70; // 70
     this.gameOverStatus = false;
-    this.score = { points: 0, text: "Points:", level: 1, counter: 0 };
+    this.score = { points: 0, text: "Points:", level: 1, counter: 0, name };
     this.controlPanel = options.controlpanel;
     this.starting = options.starting;
     this.gameInterval = undefined;
@@ -55,6 +55,9 @@ class Game {
     game.starting()();
     let element = document.getElementsByTagName("canvas")[0];
     document.getElementsByTagName("canvas")[0].parentNode.removeChild(element);
+
+    console.log("TCL: Game -> reStart -> game.score.name", game.score.name);
+    console.log("TCL: Game -> reStart -> this.score.name", this.score.name);
     game.start(this.score.name);
   }
 
@@ -106,7 +109,16 @@ class Game {
 
   _drawLife() {
     this.canvas.context.fillStyle = "white";
-    this.canvas.context.fillRect(15, 30, this.lumberjack.life / 3, 5); // ( x inicial , y inicial, aancho, alto)
+    this.canvas.context.fillRect(15, 30, 300 / 2, 5);
+    if (this.lumberjack.life > 200) {
+      this.canvas.context.fillStyle = "green";
+    } else if (this.lumberjack.life > 100) {
+      this.canvas.context.fillStyle = "orange";
+    } else {
+      this.canvas.context.fillStyle = "red";
+    }
+    // this.canvas.context.fillStyle = "white";
+    this.canvas.context.fillRect(15, 30, this.lumberjack.life / 2, 5); // ( x inicial , y inicial, aancho, alto)
   }
 
   _updateGameArea() {
@@ -235,6 +247,7 @@ class Game {
     this.buttonRight.innerHTML = "RIGHT";
     this.buttonRight.onclick = this._attack.bind(this);
     document.body.insertBefore(this.controls, document.body.childNodes[1]);
+    document.getElementsByTagName("div")[0].classList.add("no-show");
     document.getElementsByTagName("div")[0].appendChild(this.buttonLeft);
     document.getElementsByTagName("div")[0].appendChild(this.buttonRight);
     // document.body.insertBefore(this.buttonLeft, document.body.childNodes[1]);
@@ -466,18 +479,18 @@ class Game {
   }
 
   _drawScore() {
-    this.canvas.context.fillStyle = "black";
-    this.canvas.context.font = "15px Arial";
-    this.canvas.context.fillText(this.score.text + this.score.points, 15, 15);
+    this.canvas.context.fillStyle = "white";
+    this.canvas.context.font = "20px Arial";
+    this.canvas.context.fillText(this.score.text + this.score.points, 15, 20);
   }
 
   _drawLevel() {
     // let procesoID;
     // procesoID = setInterval(this._drawLevel, 10);
     console.log("he llamado DRAW LEVEL");
-    this.canvas.context.fillStyle = "black";
-    this.canvas.context.font = "15px Arial";
-    this.canvas.context.fillText("LEVEL:  " + this.score.level, 15, 75);
+    this.canvas.context.fillStyle = "white";
+    this.canvas.context.font = "45px Comic-sans";
+    this.canvas.context.fillText("LEVEL:  " + this.score.level, 150, 275);
     console.log("Deberia haber DRAW LEVEL");
   }
 

@@ -15,8 +15,9 @@ class ControlPanel {
   }
 
   _buttonReStart() {
-    this.reStartGame.innerHTML = "NEW GAME";
-    this.reStartGame.onclick = game.reStart;
+    this.reStartGame.innerHTML = "Press Spacebar <br>to<br> TRY AGAIN ";
+    this.reStartGame.classList.add("btn_again");
+    // this.reStartGame.onclick = game.reStart;
     document.getElementsByTagName("div")[0].appendChild(this.reStartGame);
 
     this.buttonReCharge();
@@ -24,7 +25,8 @@ class ControlPanel {
 
   buttonReCharge() {
     var reChargePage = document.createElement("button");
-    reChargePage.innerHTML = "New Player";
+    reChargePage.innerHTML = "Change Player";
+    reChargePage.classList.add("btn_changePlayer");
     reChargePage.onclick = this._refreshPage;
     document.getElementsByTagName("div")[0].appendChild(reChargePage);
   }
@@ -86,7 +88,7 @@ class ControlPanel {
     showInstructions.setAttribute("id", "showInstructionsPannel");
     showInstructions.setAttribute("class", "no-show");
     showInstructions.innerHTML =
-      "Very Easy: <br> 1st. Put Your Name <br> 2nd. PRESS PLAY <br> 3rd. Hurry UP <br> 4th. LEFT or RIGHT ARROW to cut .";
+      "Very Easy: <br> 1st. Put Your Name <br> 2nd. PRESS PLAY when ready<br> 3rd. USE LEFT or RIGHT ARROW to cut the TREE <br> 4th. Hurry UP <br>5th. The TIME is LIFE<br> COME ON!!";
     document.getElementById("startPage").appendChild(showInstructions);
   }
 
