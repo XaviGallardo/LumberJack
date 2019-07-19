@@ -49,10 +49,62 @@ canvas {
 
 #showInstructionsPannel {
   position: absolute;
-  top: 420px;
-  left: 50%;
+  top: 340px;
+  left: 60%;
   right: 50%;
-  width: 45%;
-  font-size: 2em;
+  width: 400px;
+  font-size: 1.8em;
   color: white;
+}
+
+#finalResult {
+  width: 400px;
+  margin: 0 auto;
+  position: absolute;
+  top: 16%;
+  left: 0;
+  color: green;
+  background-color: lemonchiffon;
+  text-align: center;
+  right: 0;
+  padding: 1em;
+  border: 10px solid;
+  border-radius: 40px;
+}
+
+#finalResult > button {
+  display: block;
+  margin: 0.5em auto;
+}
+
+#totalResults h3 {
+  font-size: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.lista_resultado {
+  font-size: 1.3em;
+  text-align: justify;
+}
+
+.right {
+  float: right;
+}
+
+#playerForm {
+  text-align: center;
+  color: white;
+}
+
+#playerForm h1 {
+  font-size: 4em;
+  margin-bottom: 0;
+}
+
+#name {
+  width: 300px;
+  padding: 10px;
+  font-size: 2em;
+  background-color: yellowgreen;
 }

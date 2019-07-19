@@ -116,7 +116,7 @@ class TotalScore {
     this.getLocalData();
     var results = document.createElement("div");
     results.setAttribute("id", "totalResults");
-    results.innerHTML = "<h3> 10 BEST PLAYERS</h3>";
+    results.innerHTML = "<h3>BEST 10 PLAYERS</h3>";
     document.getElementById("finalResult").appendChild(results);
     this.scores.forEach(this.insertElementFromResults);
   }
@@ -124,9 +124,9 @@ class TotalScore {
     if (result.name) {
       var element = document.createElement("li");
       element.setAttribute("class", "lista_resultado");
-      element.innerHTML = `${index + 1} -> ${result.name} = ${
+      element.innerHTML = `${index + 1} -> ${result.name} <span class=right> ${
         result.score
-      } Points`;
+      } Points </span>`;
       document.getElementById("totalResults").appendChild(element);
       var div = document.getElementById("totalResults");
     }
